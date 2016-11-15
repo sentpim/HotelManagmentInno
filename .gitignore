@@ -1,1 +1,16 @@
-.idea
+target/
+
+# OS generated files #
+######################
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+.idea/
+
+database.properties
+log4j.properties
