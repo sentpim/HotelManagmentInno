@@ -13,11 +13,7 @@ public class PersonController {
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String main(){
         System.out.println(1);
-<<<<<<< HEAD
         return "dashboard";
-=======
-        return "index";
->>>>>>> bdf042ec66c39f9a3275ddca57d1e5c6b996b89a
     }
 
 }
