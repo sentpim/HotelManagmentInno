@@ -1,4 +1,4 @@
-target/*
+target/
 
 # OS generated files #
 ######################
@@ -10,4 +10,7 @@ target/*
 ehthumbs.db
 Thumbs.db
 
-.idea/*
+.idea/
+
+database.properties
+log4j.properties
