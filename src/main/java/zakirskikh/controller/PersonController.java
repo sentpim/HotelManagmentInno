@@ -10,10 +10,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class PersonController {
 
-    @RequestMapping(value = "/", method = RequestMethod.GET)
-    public String main(){
-        System.out.println(1);
+    @RequestMapping(value = { "/", "dashboard" }, method = RequestMethod.GET)
+    public String getDashdoard(){
         return "dashboard";
+    }
+
+    @RequestMapping(value = "user" , method = RequestMethod.GET)
+    public String getUser(){
+        return "user";
     }
 
 }

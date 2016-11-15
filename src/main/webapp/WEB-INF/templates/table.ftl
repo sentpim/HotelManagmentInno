@@ -44,7 +44,7 @@
 
             <ul class="nav">
                 <li>
-                    <a href="user.html">
+                    <a href="user.ftl">
                         <i class="ti-user"></i>
                         <p>User Profile</p>
                     </a>
@@ -56,31 +56,31 @@
                     </a>
                 </li>
                 <li class="active">
-                    <a href="table.html">
+                    <a href="table.ftl">
                         <i class="ti-view-list-alt"></i>
                         <p>Employees</p>
                     </a>
                 </li>
                 <li>
-                    <a href="typography.html">
+                    <a href="typography.ftl">
                         <i class="ti-view-list-alt"></i>
                         <p>Booking</p>
                     </a>
                 </li>
                 <li>
-                    <a href="maps.html">
+                    <a href="maps.ftl">
                         <i class="ti-map"></i>
                         <p>Hotels</p>
                     </a>
                 </li>
                 <li>
-                    <a href="icons.html">
+                    <a href="icons.ftl">
                         <i class="ti-pencil-alt2"></i>
                         <p>Report an error</p>
                     </a>
                 </li>
                 <li>
-                    <a href="notifications.html">
+                    <a href="notifications.ftl">
                         <i class="ti-bell"></i>
                         <p>Notifications</p>
                     </a>

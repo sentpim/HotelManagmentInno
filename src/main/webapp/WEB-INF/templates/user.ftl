@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8" />
-	<link rel="apple-touch-icon" sizes="76x76" href="assets/img/apple-icon.png">
-	<link rel="icon" type="image/png" sizes="96x96" href="assets/img/favicon.png">
+	<link rel="apple-touch-icon" sizes="76x76" href="/img/apple-icon.png">
+	<link rel="icon" type="image/png" sizes="96x96" href="/img/favicon.png">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
 	 <title>Hotel Managment System</title>
@@ -13,21 +13,21 @@
 
 
     <!-- Bootstrap core CSS     -->
-    <link href="assets/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="/css/bootstrap.min.css" rel="stylesheet" />
 
     <!-- Animation library for notifications   -->
-    <link href="assets/css/animate.min.css" rel="stylesheet"/>
+    <link href="/css/animate.min.css" rel="stylesheet"/>
 
     <!--  Paper Dashboard core CSS    -->
-    <link href="assets/css/paper-dashboard.css" rel="stylesheet"/>
+    <link href="/css/paper-dashboard.css" rel="stylesheet"/>
 
     <!--  CSS for Demo Purpose, don't include it in your project     -->
-    <link href="assets/css/demo.css" rel="stylesheet" />
+    <link href="/css/demo.css" rel="stylesheet" />
 
     <!--  Fonts and icons     -->
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
     <link href='https://fonts.googleapis.com/css?family=Muli:400,300' rel='stylesheet' type='text/css'>
-    <link href="assets/css/themify-icons.css" rel="stylesheet">
+    <link href="/css/themify-icons.css" rel="stylesheet">
 
 </head>
 <body>
@@ -44,7 +44,7 @@
 
             <ul class="nav">
                 <li class="active">
-                    <a href="user.html">
+                    <a href="user.ftl">
                         <i class="ti-user"></i>
                         <p>User Profile</p>
                     </a>
@@ -56,31 +56,31 @@
                     </a>
                 </li>
                 <li>
-                    <a href="table.html">
+                    <a href="table.ftl">
                         <i class="ti-view-list-alt"></i>
                         <p>Employees</p>
                     </a>
                 </li>
                 <li>
-                    <a href="typography.html">
+                    <a href="typography.ftl">
                         <i class="ti-view-list-alt"></i>
                         <p>Booking</p>
                     </a>
                 </li>
                 <li>
-                    <a href="maps.html">
+                    <a href="maps.ftl">
                         <i class="ti-map"></i>
                         <p>Hotels</p>
                     </a>
                 </li>
                 <li>
-                    <a href="icons.html">
+                    <a href="icons.ftl">
                         <i class="ti-pencil-alt2"></i>
                         <p>Report an error</p>
                     </a>
                 </li>
                 <li>
-                    <a href="notifications.html">
+                    <a href="notifications.ftl">
                         <i class="ti-bell"></i>
                         <p>Notifications</p>
                     </a>
@@ -143,11 +143,11 @@
                     <div class="col-lg-4 col-md-5">
                         <div class="card card-user">
                             <div class="image">
-                                <img src="assets/img/background.jpg" alt="..."/>
+                                <img src="/img/background.jpg" alt="..."/>
                             </div>
                             <div class="content">
                                 <div class="author">
-                                  <img class="avatar border-white" src="assets/img/faces/face-2.jpg" alt="..."/>
+                                  <img class="avatar border-white" src="/img/faces/face-2.jpg" alt="..."/>
                                   <h4 class="title">Анвар Петушков<br />
                                      <a href="#"><small>@anzakr</small></a>
                                   </h4>
@@ -178,7 +178,7 @@
                                                 <div class="row">
                                                     <div class="col-xs-3">
                                                         <div class="avatar">
-                                                            <img src="assets/img/faces/face-0.jpg" alt="Circle Image" class="img-circle img-no-padding img-responsive">
+                                                            <img src="/img/faces/face-0.jpg" alt="Circle Image" class="img-circle img-no-padding img-responsive">
                                                         </div>
                                                     </div>
                                                     <div class="col-xs-6">
@@ -351,25 +351,25 @@
 </body>
 
     <!--   Core JS Files   -->
-    <script src="assets/js/jquery-1.10.2.js" type="text/javascript"></script>
-	<script src="assets/js/bootstrap.min.js" type="text/javascript"></script>
+    <script src="/js/jquery-1.10.2.js" type="text/javascript"></script>
+	<script src="/js/bootstrap.min.js" type="text/javascript"></script>
 
 	<!--  Checkbox, Radio & Switch Plugins -->
-	<script src="assets/js/bootstrap-checkbox-radio.js"></script>
+	<script src="/js/bootstrap-checkbox-radio.js"></script>
 
 	<!--  Charts Plugin -->
-	<script src="assets/js/chartist.min.js"></script>
+	<script src="/js/chartist.min.js"></script>
 
     <!--  Notifications Plugin    -->
-    <script src="assets/js/bootstrap-notify.js"></script>
+    <script src="/js/bootstrap-notify.js"></script>
 
     <!--  Google Maps Plugin    -->
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js"></script>
 
     <!-- Paper Dashboard Core javascript and methods for Demo purpose -->
-	<script src="assets/js/paper-dashboard.js"></script>
+	<script src="/js/paper-dashboard.js"></script>
 
 	<!-- Paper Dashboard DEMO methods, don't include it in your project! -->
-	<script src="assets/js/demo.js"></script>
+	<script src="/js/demo.js"></script>
 
 </html>
