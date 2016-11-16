@@ -43,7 +43,7 @@
     	 <div class="sidebar-wrapper">
 
             <ul class="nav">
-                <li class="active">
+                <li class="${is_user_active}">
                     <a href="user.ftl">
                         <i class="ti-user"></i>
                         <p>User Profile</p>
