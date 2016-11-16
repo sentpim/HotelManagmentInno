@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:security="http://www.springframework.org/schema/security"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+
+<security:http auto-config="true">
+        <security:intercept-url pattern="/sign_in" access="isAnonymous()"/>
+        <security:form-login
+                login-page="/sign_in"
+                login-processing-url="/sign_in"
+                password-parameter="password"
+                username-parameter="email"
+                default-target-url="/dashboard"
+                always-use-default-target="true"
+                authentication-failure-url="/sign_in?error=true"
+                authentication-success-handler-ref="authenticationSuccessHandler"/>
+        <security:logout logout-url="/logout" logout-success-url="/sign_in"/>
+        <security:csrf disabled="true"/>
+        <security:headers>
+            <security:frame-options policy="SAMEORIGIN"/>
+            <security:xss-protection enabled="true"/>
+        </security:headers>
+        <security:access-denied-handler error-page="/dashboard" />
+    </security:http>
+
+    <bean id="authenticationSuccessHandler" class="org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler">
+        <!-- After login, return to the last visited page -->
+        <property name="useReferer" value="true" />
+    </bean>
+
+    <!--<bean id="authenticationSuccessHandlerWithoutReferer" class="org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler">-->
+        <!--&lt;!&ndash; After login, stay to the same page &ndash;&gt;-->
+        <!--<property name="useReferer" value="false" />-->
+    <!--</bean>-->
+
+    <security:authentication-manager>
+        <security:authentication-provider ref="authProvider"/>
+    </security:authentication-manager>
+    <bean id="authProvider" class="zakirskikh.security.AuthProviderImpl"/>
+</beans>

@@ -31,6 +31,7 @@ public class AddressDao {
                 stmt.setString(2, address.getCity());
                 stmt.setString(3, address.getAddress());
                 stmt.setString(4, address.getPostcode());
+                stmt.setInt(5, address.getId());
 
                 stmt.execute();
 

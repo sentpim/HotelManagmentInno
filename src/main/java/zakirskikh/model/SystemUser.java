@@ -11,11 +11,14 @@ public class SystemUser {
 
     private String password;
 
-    private String role;
+    private SystemUserRole role;
 
     private int hotelId;
 
-    public SystemUser(String email, String password, String role, int hotelId) {
+    public SystemUser() {
+    }
+
+    public SystemUser(String email, String password, SystemUserRole role, int hotelId) {
         this.email = email;
         this.password = password;
         this.role = role;
@@ -46,11 +49,11 @@ public class SystemUser {
         this.password = password;
     }
 
-    public String getRole() {
+    public SystemUserRole getRole() {
         return role;
     }
 
-    public void setRole(String role) {
+    public void setRole(SystemUserRole role) {
         this.role = role;
     }
 

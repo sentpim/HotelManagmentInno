@@ -7,7 +7,8 @@ public enum SystemUserRole {
 
     SUPERUSER(0),
     ADMINISTRATOR(1),
-    RECEPTION(2);
+    RECEPTION(2),
+    USER(3);
 
     private int roleId;
 

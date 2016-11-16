@@ -1,5 +1,8 @@
 package zakirskikh.model;
 
+import zakirskikh.dao.CustomerDao;
+import zakirskikh.dao.HotelDao;
+
 import java.sql.Date;
 
 /**
@@ -24,6 +27,13 @@ public class Booking {
     private int customerId;
 
     private int hotelId;
+
+    private Hotel hotel;
+
+    private Customer customer;
+
+    public Booking() {
+    }
 
     public Booking(Date createdAt, Date checkIn, Date checkOut, int days, boolean isPayed, int personCount, int customerId, int hotelId) {
         this.createdAt = createdAt;
@@ -109,10 +119,10 @@ public class Booking {
     }
 
     public Customer getCustomer() {
-        return null;
+        return (customer == null) ? customer = CustomerDao.get(customerId) : customer;
     }
 
     public Hotel getHotel() {
-        return null;
+        return (hotel == null) ? hotel = HotelDao.get(hotelId) : hotel;
     }
 }

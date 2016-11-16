@@ -35,6 +35,7 @@ public class PersonDao {
                 stmt.setString(5, person.getPassportId());
                 stmt.setString(6, person.getEmail());
                 stmt.setInt(7, person.getAddressId());
+                stmt.setInt(8, person.getId());
 
                 stmt.execute();
 
