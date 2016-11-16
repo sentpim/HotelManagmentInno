@@ -41,7 +41,7 @@ public class AuthController {
             try {
 //                userService.registerUser(userForm);
 //            }catch (EmailExistsException emailExistsException){
-                result.rejectValue("email", "", "Email already exists!");
+//                result.rejectValue("email", "", "Email already exists!");
             }catch (IllegalArgumentException illegalArgumentException){
                 System.err.println(illegalArgumentException.getMessage());
                 String fieldName;

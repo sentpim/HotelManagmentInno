@@ -21,7 +21,7 @@ public class PersonController {
         return "dashboard";
     }
 
-    @RequestMapping(value = "user" , method = RequestMethod.GET)
+    @RequestMapping(value = "/user" , method = RequestMethod.GET)
     public String getUser(Model model){
         model.addAttribute("is_user_active", "active");
 
@@ -89,17 +89,17 @@ public class PersonController {
         return "user";
     }
 
-    @RequestMapping(value = "bookings" , method = RequestMethod.GET)
+    @RequestMapping(value = "/bookings" , method = RequestMethod.GET)
     public String getBookings(){
         return "bookings";
     }
 
-    @RequestMapping(value = "employees" , method = RequestMethod.GET)
+    @RequestMapping(value = "/employees" , method = RequestMethod.GET)
     public String getEmployees(){
         return "employees";
     }
 
-    @RequestMapping(value = "report" , method = RequestMethod.GET)
+    @RequestMapping(value = "/report" , method = RequestMethod.GET)
     public String getReport(){
         return "report";
     }

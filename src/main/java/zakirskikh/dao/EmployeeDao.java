@@ -98,6 +98,42 @@ public class EmployeeDao {
         return employee;
     }
 
+    public static Employee get(int id) {
+        String sql = "SELECT * FROM Employee WHERE id = ?";
+        Employee employee = null;
+
+        PreparedStatement stmt = null;
+        Connection con = getConnection();
+        try {
+            stmt = con.prepareStatement(sql);
+            stmt.setInt(1, id);
+            ResultSet rs = stmt.executeQuery();
+            rs.next();
+
+            employee = new Employee();
+            employee.setId(rs.getInt("id"));
+            employee.setSalary(rs.getInt("salary"));
+            employee.setStartDate(rs.getDate("start_date"));
+            employee.setPostId(rs.getInt("post_id"));
+            employee.setPersonId(rs.getInt("person_id"));
+            employee.setHotelId(rs.getInt("hotel_id"));
+
+            logger.trace("OK: Employee was taken with id " + id);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            logger.error("FAILURE: can't get Employee with id " + id);
+        } finally {
+            try {
+                stmt.close();
+                con.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return employee;
+    }
+
     public static List<Employee> getAll() {
         String sql = "SELECT * FROM Employee";
         List<Employee> list = new ArrayList<>();

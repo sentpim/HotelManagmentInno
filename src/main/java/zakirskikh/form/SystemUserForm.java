@@ -16,6 +16,10 @@ public class SystemUserForm {
 
     private int role = 2;
 
+    private String firstName;
+
+    private String lastName;
+
     public SystemUserForm() {
     }
 
@@ -57,8 +61,20 @@ public class SystemUserForm {
         this.role = role;
     }
 
-    public Hotel getHotel() {
-        return null;
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
 }
