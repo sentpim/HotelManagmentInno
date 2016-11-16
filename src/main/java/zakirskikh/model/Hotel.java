@@ -17,6 +17,9 @@ public class Hotel {
 
     private int addressId;
 
+    public Hotel() {
+    }
+
     public Hotel(String name, int budget, int starsCount, int addressId) {
         this.name = name;
         this.budget = budget;
@@ -71,5 +74,16 @@ public class Hotel {
 
     public Address getAddress() {
         return AddressDao.get(addressId);
+    }
+
+    @Override
+    public String toString() {
+        return "Hotel{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", budget=" + budget +
+                ", starsCount=" + starsCount +
+                ", addressId=" + addressId +
+                '}';
     }
 }

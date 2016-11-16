@@ -1,5 +1,7 @@
 package zakirskikh.model;
 
+import zakirskikh.dao.HotelDao;
+
 /**
  * Created by Anvar on 15/11/2016.
  */
@@ -12,6 +14,9 @@ public class Feature {
     private int price;
 
     private int hotelId;
+
+    public Feature() {
+    }
 
     public Feature(String name, int price, int hotelId) {
         this.name = name;
@@ -43,8 +48,16 @@ public class Feature {
         this.price = price;
     }
 
+    public int getHotelId() {
+        return hotelId;
+    }
+
+    public void setHotelId(int hotelId) {
+        this.hotelId = hotelId;
+    }
+
     public Hotel getHotel() {
-        return null;
+        return HotelDao.get(hotelId);
     }
 
 }

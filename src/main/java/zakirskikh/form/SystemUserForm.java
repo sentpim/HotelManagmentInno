@@ -1,9 +1,12 @@
-package zakirskikh.model;
+package zakirskikh.form;
+
+import zakirskikh.model.Hotel;
+import zakirskikh.model.SystemUserRole;
 
 /**
- * Created by Anvar on 15/11/2016.
+ * Created by Anvar on 16/11/2016.
  */
-public class SystemUser {
+public class SystemUserForm {
 
     private int id;
 
@@ -11,18 +14,15 @@ public class SystemUser {
 
     private String password;
 
-    private SystemUserRole role;
+    private int role = 2;
 
-    private int hotelId;
-
-    public SystemUser() {
+    public SystemUserForm() {
     }
 
-    public SystemUser(String email, String password, SystemUserRole role, int hotelId) {
+    public SystemUserForm(String email, String password, int role) {
         this.email = email;
         this.password = password;
         this.role = role;
-        this.hotelId = hotelId;
     }
 
     public int getId() {
@@ -49,23 +49,16 @@ public class SystemUser {
         this.password = password;
     }
 
-    public SystemUserRole getRole() {
+    public int getRole() {
         return role;
     }
 
-    public void setRole(SystemUserRole role) {
+    public void setRole(int role) {
         this.role = role;
-    }
-
-    public int getHotelId() {
-        return hotelId;
-    }
-
-    public void setHotelId(int hotelId) {
-        this.hotelId = hotelId;
     }
 
     public Hotel getHotel() {
         return null;
     }
+
 }

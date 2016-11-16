@@ -5,13 +5,18 @@ import zakirskikh.dao.PersonDao;
 /**
  * Created by Anvar on 15/11/2016.
  */
-public class Customer {
+public class Customer implements PersonGettable {
 
     private int id;
 
     private String password;
 
     private int personId;
+
+    private Person person;
+
+    public Customer() {
+    }
 
     public Customer(String password, int personId) {
         this.password = password;
@@ -48,6 +53,15 @@ public class Customer {
     }
 
     public Person getPerson() {
-        return PersonDao.get(personId);
+        return (person == null) ? person = PersonDao.get(personId) : person;
+    }
+
+    @Override
+    public String toString() {
+        return "Customer{" +
+                "id=" + id +
+                ", password='" + password + '\'' +
+                ", personId=" + personId +
+                '}';
     }
 }

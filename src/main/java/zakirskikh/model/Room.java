@@ -1,5 +1,7 @@
 package zakirskikh.model;
 
+import zakirskikh.dao.HotelDao;
+
 /**
  * Created by Anvar on 15/11/2016.
  */
@@ -42,5 +44,9 @@ public class Room {
 
     public RoomType getRoomType() {
         return null;
+    }
+
+    public Hotel getHotel() {
+        return getRoomType().getHotel();
     }
 }

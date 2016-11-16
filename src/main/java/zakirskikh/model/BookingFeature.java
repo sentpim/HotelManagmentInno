@@ -1,5 +1,7 @@
 package zakirskikh.model;
 
+import zakirskikh.dao.BookingDao;
+
 /**
  * Created by Anvar on 15/11/2016.
  */
@@ -10,6 +12,9 @@ public class BookingFeature {
     private int featureId;
 
     private int bookingId;
+
+    public BookingFeature() {
+    }
 
     public BookingFeature(int featureId, int bookingId) {
         this.featureId = featureId;
@@ -45,6 +50,6 @@ public class BookingFeature {
     }
 
     public Booking getBooking() {
-        return null;
+        return BookingDao.get(bookingId);
     }
 }
