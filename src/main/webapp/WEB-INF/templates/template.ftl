@@ -11,20 +11,14 @@
 	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width" />
 
-
-    <!-- Bootstrap core CSS     -->
     <link href="/css/bootstrap.min.css" rel="stylesheet" />
 
-    <!-- Animation library for notifications   -->
     <link href="/css/animate.min.css" rel="stylesheet"/>
 
-    <!--  Paper Dashboard core CSS    -->
     <link href="/css/paper-dashboard.css" rel="stylesheet"/>
 
-    <!--  CSS for Demo Purpose, don't include it in your project     -->
     <link href="/css/demo.css" rel="stylesheet" />
 
-    <!--  Fonts and icons     -->
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
     <link href='https://fonts.googleapis.com/css?family=Muli:400,300' rel='stylesheet' type='text/css'>
     <link href="/css/themify-icons.css" rel="stylesheet">
@@ -32,54 +26,74 @@
 </head>
 <body>
 
+
 <div class="wrapper">
-	<div class="sidebar" data-background-color="white" data-active-color="danger">
+     <div class="sidebar" data-background-color="white" data-active-color="danger">
 
-    <!--
-		Tip 1: you can change the color of the sidebar's background using: data-background-color="white | black"
-		Tip 2: you can change the color of the active button using the data-active-color="primary | info | success | warning | danger"
-	-->
-
-    	<div class="sidebar-wrapper">
+        <div class="sidebar-wrapper">
 
             <ul class="nav">
-                <li class="active">
+                <li>
+                    <a href="user.ftl">
+                        <i class="ti-user"></i>
+                        <p>User Profile</p>
+                    </a>
+                </li>
+                <li>
                     <a href="dashboard.ftl">
-                        <i class="ti-pie-chart"></i>
+                        <i class="ti-panel"></i>
                         <p>Dashboard</p>
                     </a>
                 </li>
-
+                <li>
+                    <a href="employees.ftl">
+                        <i class="ti-view-list-alt"></i>
+                        <p>Employees</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="bookings.ftl">
+                        <i class="ti-view-list-alt"></i>
+                        <p>Booking</p>
+                    </a>
+                </li>
+                <li class="active">
+                    <a href="hotels.ftl">
+                        <i class="ti-map"></i>
+                        <p>Hotels</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="report.ftl">
+                        <i class="ti-pencil-alt2"></i>
+                        <p>Report an error</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="sysusers.ftl">
+                        <i class="ti-bell"></i>
+                        <p>Notifications</p>
+                    </a>
+                </li>
             </ul>
-    	</div>
-    </div>
-
-    <div class="main-panel">
-		<nav class="navbar navbar-default">
-            <div class="container-fluid">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar bar1"></span>
-                        <span class="icon-bar bar2"></span>
-                        <span class="icon-bar bar3"></span>
-                    </button>
-                    <a class="navbar-brand" href="#">Template</a>
-                </div>
-                <div class="collapse navbar-collapse">
+        </div>
+    </div>    
+       <div class="main-panel">
+    <nav class="navbar navbar-default">
+            <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav navbar-right">
                         <li>
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                 <i class="ti-panel"></i>
-								<p>Stats</p>
+                                <p>Stats</p>
                             </a>
                         </li>
                         <li class="dropdown">
                               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                     <i class="ti-bell"></i>
                                     <p class="notification">5</p>
-									<p>Notifications</p>
-									<b class="caret"></b>
+                                    <p>Notifications</p>
+                                    <b class="caret"></b>
                               </a>
                               <ul class="dropdown-menu">
                                 <li><a href="#">Notification 1</a></li>
@@ -89,26 +103,19 @@
                                 <li><a href="#">Another notification</a></li>
                               </ul>
                         </li>
-						<li>
+                        <li>
                             <a href="#">
-								<i class="ti-settings"></i>
-								<p>Settings</p>
+                                <i class="ti-settings"></i>
+                                <p>Settings</p>
                             </a>
                         </li>
                     </ul>
 
                 </div>
-            </div>
-        </nav>
-
-
-        <div class="content">
-            <div class="container-fluid">
-                <div class="row">
-
-                </div>
-            </div>
-        </div>
+        </nav>  
+       <div class="content">
+        <@m_body/>
+    </div>
 
 <footer class="footer">
             <div class="container-fluid">
@@ -125,9 +132,8 @@
                 </div>
             </div>
         </footer>
-    </div>
 </div>
-
+</div>
 
 </body>
 

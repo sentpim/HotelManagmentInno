@@ -35,12 +35,12 @@
 <div class="wrapper">
 	<div class="sidebar" data-background-color="white" data-active-color="danger">
 
-	<!--
+    <!--
 		Tip 1: you can change the color of the sidebar's background using: data-background-color="white | black"
 		Tip 2: you can change the color of the active button using the data-active-color="primary | info | success | warning | danger"
 	-->
 
-		 <div class="sidebar-wrapper">
+    	 <div class="sidebar-wrapper">
 
             <ul class="nav">
                 <li>
@@ -56,31 +56,31 @@
                     </a>
                 </li>
                 <li>
-                    <a href="table.ftl">
+                    <a href="employees.ftl">
                         <i class="ti-view-list-alt"></i>
                         <p>Employees</p>
                     </a>
                 </li>
-                <li class="active">
-                    <a href="typography.ftl">
+                <li>
+                    <a href="bookings.ftl">
                         <i class="ti-view-list-alt"></i>
                         <p>Booking</p>
                     </a>
                 </li>
-                <li>
-                    <a href="maps.ftl">
+                <li class="active">
+                    <a href="hotels.ftl">
                         <i class="ti-map"></i>
                         <p>Hotels</p>
                     </a>
                 </li>
                 <li>
-                    <a href="icons.ftl">
+                    <a href="report.ftl">
                         <i class="ti-pencil-alt2"></i>
                         <p>Report an error</p>
                     </a>
                 </li>
                 <li>
-                    <a href="notifications.ftl">
+                    <a href="sysusers.ftl">
                         <i class="ti-bell"></i>
                         <p>Notifications</p>
                     </a>
@@ -88,6 +88,8 @@
             </ul>
         </div>
     </div>
+    </div>
+
     <div class="main-panel">
 		<nav class="navbar navbar-default">
             <div class="container-fluid">
@@ -98,7 +100,7 @@
                         <span class="icon-bar bar2"></span>
                         <span class="icon-bar bar3"></span>
                     </button>
-                    <a class="navbar-brand" href="#">Typography</a>
+                    <a class="navbar-brand" href="#">Maps</a>
                 </div>
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav navbar-right">
@@ -135,94 +137,20 @@
             </div>
         </nav>
 
-
-        <div class="content">
+		<div class="content">
             <div class="container-fluid">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="card">
-                            <div class="header">
-                                <h4 class="title">Paper Dashboard Headings</h4>
-                                <p class="category">Created using <a href="https://www.google.com/fonts/specimen/Muli">Muli</a> Font Family</p>
-                            </div>
-                            <div class="content">
-
-                                <div class="typo-line">
-                                    <h1><p class="category">Header 1</p>Paper Dashboard Heading </h1>
-                                </div>
-
-                                    <div class="typo-line">
-                                    <h2><p class="category">Header 2</p>Paper Dashboard Heading </h2>
-                                </div>
-                                <div class="typo-line">
-                                    <h3><p class="category">Header 3</p>Paper Dashboard Heading </h3>
-                                </div>
-                                <div class="typo-line">
-                                    <h4><p class="category">Header 4</p>Paper Dashboard Heading </h4>
-                                </div>
-                                <div class="typo-line">
-                                    <h5><p class="category">Header 5</p>Paper Dashboard Heading </h5>
-                                </div>
-                                 <div class="typo-line">
-                                    <h6><p class="category">Header 6</p>Paper Dashboard Heading </h6>
-                                </div>
-                                <div class="typo-line">
-                                    <p><span class="category">Paragraph</span>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam.</p>
-                                </div>
-                                <div class="typo-line">
-                                    <p class="category">Quote</p>
-                                    <blockquote>
-                                     <p>
-                                     Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam.
-                                     </p>
-                                     <small>
-                                     Steve Jobs, CEO Apple
-                                     </small>
-                                    </blockquote>
-                                </div>
-
-                                <div class="typo-line">
-                                    <p class="category">Muted Text</p>
-                                    <p class="text-muted">
-                                    Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet.
-                                    </p>
-                                </div>
-                                <div class="typo-line">
-                                    <!--
-                                     there are also "text-info", "text-success", "text-warning", "text-danger" clases for the text
-                                     -->
-                                    <p class="category">Coloured Text</p>
-                                    <p class="text-primary">
-                                        Text Primary - Light Bootstrap Table Heading and complex bootstrap dashboard you've ever seen on the internet.
-                                    </p>
-                                    <p class="text-info">
-                                        Text Info - Light Bootstrap Table Heading and complex bootstrap dashboard you've ever seen on the internet.
-                                    </p>
-                                    <p class="text-success">
-                                        Text Success - Light Bootstrap Table Heading and complex bootstrap dashboard you've ever seen on the internet.
-                                    </p>
-                                    <p class="text-warning">
-                                        Text Warning - Light Bootstrap Table Heading and complex bootstrap dashboard you've ever seen on the internet.
-                                    </p>
-                                    <p class="text-danger">
-                                        Text Danger - Light Bootstrap Table Heading and complex bootstrap dashboard you've ever seen on the internet.
-                                    </p>
-                                </div>
-
-                                <div class="typo-line">
-                                    <h2><p class="category">Small Tag</p>Header with small subtitle <br><small>".small" is a tag for the headers</small> </h2>
-                                </div>
-
-
-                            </div>
-                        </div>
+                <div class="card card-map">
+					<div class="header">
+                        <h4 class="title">Google Maps</h4>
                     </div>
+					<div class="map">
+						<div id="map"></div>
+					</div>
+				</div>
+			</div>
+		</div>
 
-                </div>
-            </div>
-        </div>
-
-       <footer class="footer">
+		<footer class="footer">
             <div class="container-fluid">
                 <div class="copyright pull-right">
                     &copy; <script>document.write(new Date().getFullYear())</script>, 
@@ -237,7 +165,6 @@
                 </div>
             </div>
         </footer>
-
 
     </div>
 </div>
@@ -266,5 +193,11 @@
 
 	<!-- Paper Dashboard DEMO methods, don't include it in your project! -->
 	<script src="/js/demo.js"></script>
+
+    <script>
+        $().ready(function(){
+            demo.initGoogleMaps();
+        });
+    </script>
 
 </html>

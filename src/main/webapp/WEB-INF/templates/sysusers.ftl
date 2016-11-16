@@ -56,31 +56,31 @@
                     </a>
                 </li>
                 <li>
-                    <a href="table.ftl">
+                    <a href="employees.ftl">
                         <i class="ti-view-list-alt"></i>
                         <p>Employees</p>
                     </a>
                 </li>
                 <li>
-                    <a href="typography.ftl">
+                    <a href="bookings.ftl">
                         <i class="ti-view-list-alt"></i>
                         <p>Booking</p>
                     </a>
                 </li>
                 <li>
-                    <a href="maps.ftl">
+                    <a href="hotels.ftl">
                         <i class="ti-map"></i>
                         <p>Hotels</p>
                     </a>
                 </li>
                 <li>
-                    <a href="icons.ftl">
+                    <a href="report.ftl">
                         <i class="ti-pencil-alt2"></i>
                         <p>Report an error</p>
                     </a>
                 </li>
                 <li class="active">
-                    <a href="notifications.ftl">
+                    <a href="sysusers.ftl">
                         <i class="ti-bell"></i>
                         <p>Notifications</p>
                     </a>
