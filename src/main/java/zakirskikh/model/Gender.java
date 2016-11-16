@@ -5,7 +5,8 @@ package zakirskikh.model;
  */
 public enum Gender {
 
-    MALE(0), FEMALE(1);
+    MALE(0),
+    FEMALE(1);
 
     private int genderId;
 
@@ -15,5 +16,15 @@ public enum Gender {
 
     public int getGenderId() {
         return genderId;
+    }
+
+    public static Gender getGender(int genderId) {
+        switch (genderId) {
+            case 0:
+                return MALE;
+            case 1:
+            default:
+                return FEMALE;
+        }
     }
 }

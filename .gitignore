@@ -14,3 +14,4 @@ Thumbs.db
 
 database.properties
 log4j.properties
+*.iml
