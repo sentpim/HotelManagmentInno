@@ -99,6 +99,7 @@ public class Employee implements PersonGettable {
 
     public Hotel getHotel() {
         return (hotel == null) ? hotel = HotelDao.get(hotelId) : hotel;
+//        return HotelDao.get(hotelId);
     }
 
     public Post getPost() {

@@ -21,6 +21,12 @@ public class HotelController {
 
     @RequestMapping(value = "/hotels" , method = RequestMethod.GET)
     public String getHotels(Model model){
+        model.addAttribute("is_hotels_category", true);
+
+        if (!SystemUser.getCurrent().getRole().isAdmin()) {
+            return "redirect:/client";
+        }
+
         model.addAttribute("hotels", HotelDao.getAll());
 
         return "hotels";
@@ -28,6 +34,12 @@ public class HotelController {
 
     @RequestMapping(value = "/hotels/add" , method = RequestMethod.GET)
     public String getAddHotel(Model model){
+        model.addAttribute("is_hotels_category", true);
+
+        if (!SystemUser.getCurrent().getRole().isAdmin()) {
+            return "redirect:/client";
+        }
+
         model.addAttribute("hotelForm", new HotelForm());
 
         return "hotel-add";
@@ -38,25 +50,21 @@ public class HotelController {
 
         HotelDao.save(hotelForm);
 
-        System.out.println(hotelForm);
-
         return "redirect:/hotels";
     }
 
-    @RequestMapping(value = "/hotels/{hotel_id}" , method = RequestMethod.GET)
-    public String getHotel(@PathVariable(value = "hotel_id") Integer hotel_id){
-        Hotel hotel = HotelDao.get(hotel_id);
-        return "hotel-single";
-    }
-
     @RequestMapping(value = "/hotels/{hotel_id}/edit" , method = RequestMethod.GET)
-    public String getEditHotel(@PathVariable(value = "hotel_id") Integer hotel_id){
+    public String getEditHotel(@PathVariable(value = "hotel_id") Integer hotel_id, Model model){
+        model.addAttribute("is_hotels_category", true);
+
         Hotel hotel = HotelDao.get(hotel_id);
         return "hotel-add";
     }
 
     @RequestMapping(value = "/hotels/{hotel_id}/rooms" , method = RequestMethod.GET)
     public String getHotelRooms(@PathVariable(value = "hotel_id") Integer hotel_id, Model model){
+        model.addAttribute("is_hotels_category", true);
+
         Hotel hotel = HotelDao.get(hotel_id);
 
         List<Room> roomArrayList = RoomDao.getAll(hotel_id);
@@ -69,6 +77,8 @@ public class HotelController {
 
     @RequestMapping(value = "/hotels/{hotel_id}/bookings" , method = RequestMethod.GET)
     public String getHotelBookings(@PathVariable(value = "hotel_id") Integer hotel_id, Model model){
+        model.addAttribute("is_hotels_category", true);
+
         Hotel hotel = HotelDao.get(hotel_id);
 
         List<Booking> roomArrayList = BookingDao.getAll(hotel_id);
@@ -81,9 +91,19 @@ public class HotelController {
 
     @RequestMapping(value = "/hotels/{hotel_id}/rooms/add" , method = RequestMethod.GET)
     public String addHotelRoomForm(@PathVariable(value = "hotel_id") Integer hotel_id, Model model){
+        model.addAttribute("is_hotels_category", true);
+
         Hotel hotel = HotelDao.get(hotel_id);
 
-        List<RoomType> roomTypes = RoomTypeDao.getAll(hotel_id);
+        List<RoomType> roomTypes = RoomTypeDao.getAll();
+        //        List<RoomType> roomTypes = RoomTypeDao.getAll(hotel_id);
+        //        List<RoomType> roomTypes = RoomTypeDao.getAll(hotel_id);
+        //        List<RoomType> roomTypes = RoomTypeDao.getAll(hotel_id);
+        //        List<RoomType> roomTypes = RoomTypeDao.getAll(hotel_id);
+        //        List<RoomType> roomTypes = RoomTypeDao.getAll(hotel_id);
+        //        List<RoomType> roomTypes = RoomTypeDao.getAll(hotel_id);
+        //        List<RoomType> roomTypes = RoomTypeDao.getAll(hotel_id);
+        //        List<RoomType> roomTypes = RoomTypeDao.getAll(hotel_id);
 
         model.addAttribute("hotel", hotel);
         model.addAttribute("roomTypes", roomTypes);
@@ -97,37 +117,60 @@ public class HotelController {
 
         RoomDao.save(new Room(
                 roomForm.getNumber(),
-                roomForm.getRoomTypeId()
+                roomForm.getRoomTypeId(),
+                hotel_id
         ));
 
         return "redirect:/hotels/" + hotel_id + "/rooms";
     }
 
-    @RequestMapping(value = "/hotels/{hotel_id}/roomtypes/add" , method = RequestMethod.GET)
-    public String addHotelRoomTypeForm(@PathVariable(value = "hotel_id") Integer hotel_id, Model model){
-        Hotel hotel = HotelDao.get(hotel_id);
+//    @RequestMapping(value = "/hotels/{hotel_id}/roomtypes/add" , method = RequestMethod.GET)
+//    public String addHotelRoomTypeForm(@PathVariable(value = "hotel_id") Integer hotel_id, Model model){
+//        Hotel hotel = HotelDao.get(hotel_id);
+//
+//        model.addAttribute("roomTypeForm", new RoomTypeForm());
+//        model.addAttribute("hotel", hotel);
+//
+//        return "hotel-add-roomtype";
+//    }
+
+//    @RequestMapping(value = "/hotels/{hotel_id}/roomtypes/add" , method = RequestMethod.POST)
+//    public String addHotelRoomType(@ModelAttribute("roomTypeForm") RoomTypeForm roomTypeForm, @PathVariable(value = "hotel_id") Integer hotel_id){
+//
+//        RoomTypeDao.save(new RoomType(
+//                roomTypeForm.getName(),
+//                roomTypeForm.getPrice(),
+//                roomTypeForm.getBedsCount()
+//        ));
+//
+//        return "redirect:/hotels/";
+//    }
+
+    @RequestMapping(value = "/roomtypes/add" , method = RequestMethod.GET)
+    public String addHotelRoomTypeForm(Model model){
+        model.addAttribute("is_hotels_category", true);
 
         model.addAttribute("roomTypeForm", new RoomTypeForm());
-        model.addAttribute("hotel", hotel);
 
         return "hotel-add-roomtype";
     }
 
-    @RequestMapping(value = "/hotels/{hotel_id}/roomtypes/add" , method = RequestMethod.POST)
-    public String addHotelRoomType(@ModelAttribute("roomTypeForm") RoomTypeForm roomTypeForm, @PathVariable(value = "hotel_id") Integer hotel_id){
+    @RequestMapping(value = "/roomtypes/add" , method = RequestMethod.POST)
+    public String addRoomType(@ModelAttribute("roomTypeForm") RoomTypeForm roomTypeForm){
 
         RoomTypeDao.save(new RoomType(
                 roomTypeForm.getName(),
                 roomTypeForm.getPrice(),
-                roomTypeForm.getBedsCount(),
-                hotel_id)
-        );
+                roomTypeForm.getBedsCount()
+        ));
 
         return "redirect:/hotels/";
     }
 
     @RequestMapping(value = "/hotels/{hotel_id}/features/add" , method = RequestMethod.GET)
     public String addHotelFeatureForm(@PathVariable(value = "hotel_id") Integer hotel_id, Model model){
+        model.addAttribute("is_hotels_category", true);
+
         Hotel hotel = HotelDao.get(hotel_id);
 
         List<Feature> features = FeatureDao.getAll(hotel_id);

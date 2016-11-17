@@ -12,7 +12,7 @@ public class SystemUserForm {
 
     private String password;
 
-    private int roleId = 2;
+    private int roleId;
 
     private int personId;
 

@@ -26,55 +26,64 @@
 </head>
 <body>
 
-
 <div class="wrapper">
     <div class="sidebar" data-background-color="white" data-active-color="danger">
 
         <div class="sidebar-wrapper">
 
             <ul class="nav">
-                <li>
+                <li <#if is_user_category??>class="active"</#if>>
                     <a href="/user">
                         <i class="ti-user"></i>
                         <p>User Profile</p>
                     </a>
                 </li>
-                <li>
-                    <a href="/dashboard">
-                        <i class="ti-panel"></i>
-                        <p>Dashboard</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="/employees">
-                        <i class="ti-view-list-alt"></i>
-                        <p>Employees</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="/bookings">
-                        <i class="ti-view-list-alt"></i>
-                        <p>Booking</p>
-                    </a>
-                </li>
-                <li class="active">
-                    <a href="/hotels">
-                        <i class="ti-map"></i>
-                        <p>Hotels</p>
-                    </a>
-                </li>
-                <li>
+                <#if is_user??>
+                    <li <#if is_bookings_category??>class="active"</#if>>
+                        <a href="/client/bookings">
+                            <i class="ti-view-list-alt"></i>
+                            <p>Bookings</p>
+                        </a>
+                    </li>
+                <#else>
+                    <li <#if is_dashboard_category??>class="active"</#if>>
+                        <a href="/dashboard">
+                            <i class="ti-panel"></i>
+                            <p>Dashboard</p>
+                        </a>
+                    </li>
+                    <li <#if is_employees_category??>class="active"</#if>>
+                        <a href="/employees">
+                            <i class="ti-hummer"></i>
+                            <p>Employees</p>
+                        </a>
+                    </li>
+                    <li <#if is_bookings_category??>class="active"</#if>>
+                        <a href="/bookings">
+                            <i class="ti-view-list-alt"></i>
+                            <p>Bookings</p>
+                        </a>
+                    </li>
+                    <li <#if is_hotels_category??>class="active"</#if>>
+                        <a href="/hotels">
+                            <i class="ti-map"></i>
+                            <p>Hotels</p>
+                        </a>
+                    </li>
+                    <li <#if is_sysusers_category??>class="active"</#if>>
+                        <a href="/systemusers">
+                            <i class="ti-lock"></i>
+                            <p>System Users</p>
+                        </a>
+                    </li>
+                </#if>
+                <li <#if is_report_category??>class="active"</#if>>
                     <a href="/report">
                         <i class="ti-pencil-alt2"></i>
                         <p>Report an error</p>
                     </a>
                 </li>
-                <li>
-                    <a href="/sysusers">
-                        <i class="ti-bell"></i>
-                        <p>Notifications</p>
-                    </a>
-                </li>
+
             </ul>
         </div>
     </div>
@@ -83,30 +92,9 @@
             <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav navbar-right">
                     <li>
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            <i class="ti-panel"></i>
-                            <p>Stats</p>
-                        </a>
-                    </li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            <i class="ti-bell"></i>
-                            <p class="notification">5</p>
-                            <p>Notifications</p>
-                            <b class="caret"></b>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a href="#">Notification 1</a></li>
-                            <li><a href="#">Notification 2</a></li>
-                            <li><a href="#">Notification 3</a></li>
-                            <li><a href="#">Notification 4</a></li>
-                            <li><a href="#">Another notification</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <i class="ti-settings"></i>
-                            <p>Settings</p>
+                        <a href="/logout">
+                            <i class="ti-close"></i>
+                            <p>Log Out</p>
                         </a>
                     </li>
                 </ul>

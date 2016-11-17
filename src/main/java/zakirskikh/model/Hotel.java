@@ -2,6 +2,7 @@ package zakirskikh.model;
 
 import zakirskikh.dao.AddressDao;
 import zakirskikh.dao.BookingDao;
+import zakirskikh.dao.RoomDao;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -80,8 +81,18 @@ public class Hotel {
         return AddressDao.get(addressId);
     }
 
-    public int getCapacityPersentage() {
-        return 79;
+    public int getCapacity() {
+        List<Room> roomList = new ArrayList<>();
+        int capacity = 0;
+
+        if (getId() > 0)
+            roomList = RoomDao.getAll(getId());
+
+        for (Room room : roomList) {
+            capacity += room.getRoomType().getBedsCount();
+        }
+
+        return capacity;
     }
 
     public int getResidentsCount() {
@@ -91,8 +102,9 @@ public class Hotel {
         if (getId() > 0)
             bookingList = BookingDao.getAll(getId());
 
-        for (Booking booking : bookingList)
+        for (Booking booking : bookingList) {
             residentCount += booking.getPersonCount();
+        }
 
         return residentCount;
     }

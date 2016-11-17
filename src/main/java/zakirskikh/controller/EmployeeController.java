@@ -12,6 +12,7 @@ import zakirskikh.dao.PostDao;
 import zakirskikh.form.EmployeeForm;
 import zakirskikh.form.PersonProfileForm;
 import zakirskikh.model.Employee;
+import zakirskikh.model.SystemUser;
 
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -23,6 +24,12 @@ public class EmployeeController {
 
     @RequestMapping(value = "/employees" , method = RequestMethod.GET)
     public String getEmployees(Model model){
+        model.addAttribute("is_employees_category", true);
+
+        if (!SystemUser.getCurrent().getRole().isAdmin()) {
+            return "redirect:/client";
+        }
+
         model.addAttribute("employees", EmployeeDao.getAll());
 
         return "employees";
@@ -30,6 +37,12 @@ public class EmployeeController {
 
     @RequestMapping(value = "/employees/add" , method = RequestMethod.GET)
     public String getAddEmployee(Model model){
+        model.addAttribute("is_employees_category", true);
+
+        if (!SystemUser.getCurrent().getRole().isAdmin()) {
+            return "redirect:/client";
+        }
+
         model.addAttribute("employeeForm", new EmployeeForm());
         model.addAttribute("posts", PostDao.getAll());
         model.addAttribute("hotels", HotelDao.getAll());
@@ -46,16 +59,56 @@ public class EmployeeController {
         return "redirect:/employees";
     }
 
-    @RequestMapping(value = "/employees/{employee_id}" , method = RequestMethod.GET)
-    public String getEmployee(@PathVariable(value = "employee_id") Integer employee_id){
+//    @RequestMapping(value = "/employees/{employee_id}" , method = RequestMethod.GET)
+//    public String getEmployee(@PathVariable(value = "employee_id") Integer employee_id){
+//        Employee employee = EmployeeDao.get(employee_id);
+//        return "employee-single";
+//    }
+
+    @RequestMapping(value = "/employees/{employee_id}/delete" , method = RequestMethod.GET)
+    public String deleteEmployee(@PathVariable(value = "employee_id") Integer employee_id){
         Employee employee = EmployeeDao.get(employee_id);
-        return "employee-single";
+
+        EmployeeDao.delete(employee_id);
+
+        return "redirect:/employees";
     }
 
     @RequestMapping(value = "/employees/{employee_id}/edit" , method = RequestMethod.GET)
-    public String getEditEmployee(@PathVariable(value = "employee_id") Integer employee_id){
+    public String getEditEmployee(@PathVariable(value = "employee_id") Integer employee_id, Model model){
         Employee employee = EmployeeDao.get(employee_id);
+
+        EmployeeForm employeeForm = new EmployeeForm();
+        employeeForm.setId(employee.getId());
+        employeeForm.setAddress(employee.getPerson().getAddress().getAddress());
+        employeeForm.setCountry(employee.getPerson().getAddress().getCountry());
+        employeeForm.setCity(employee.getPerson().getAddress().getCity());
+        employeeForm.setPostcode(employee.getPerson().getAddress().getPostcode());
+        employeeForm.setPassportId(employee.getPerson().getPassportId());
+        employeeForm.setEmail(employee.getPerson().getEmail());
+        employeeForm.setFirstName(employee.getPerson().getFirstName());
+        employeeForm.setLastName(employee.getPerson().getLastName());
+        employeeForm.setHotelId(employee.getHotelId());
+        employeeForm.setSalary(employee.getSalary());
+        employeeForm.setGenderId(employee.getPerson().getGender().getGenderId());
+        employeeForm.setPhoneNumber(employee.getPerson().getPhoneNumber());
+        employeeForm.setPostId(employee.getPostId());
+        model.addAttribute("employeeForm", employeeForm);
+        model.addAttribute("posts", PostDao.getAll());
+        model.addAttribute("hotels", HotelDao.getAll());
+
+        model.addAttribute("is_edit", true);
+
         return "employee-add";
     }
+
+//    @RequestMapping(value = "/employees/{employee_id}/edit" , method = RequestMethod.POST)
+//    public String editEmployee(@PathVariable(value = "employee_id") Integer employee_id, Model model) {
+//        Employee employee = EmployeeDao.get(employee_id);
+//
+//        model.addAttribute("is_edit", true);
+//
+//        return "redirect:/employees";
+//    }
 
 }

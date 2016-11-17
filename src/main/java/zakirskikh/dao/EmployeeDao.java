@@ -23,6 +23,8 @@ public class EmployeeDao {
 
     public static void save(EmployeeForm employeeForm) {
 
+        Employee emp = null;
+
         Address address = new Address(
                 employeeForm.getCountry(),
                 employeeForm.getCity(),
@@ -30,8 +32,12 @@ public class EmployeeDao {
                 employeeForm.getPostcode()
         );
 
+        if (employeeForm.getId() > 0) {
+            emp = EmployeeDao.get(employeeForm.getId());
+            address.setId(emp.getPerson().getAddressId());
+        }
+
         address = AddressDao.save(address);
-        System.out.println(address);
 
         Person person = new Person(
                 employeeForm.getFirstName(),
@@ -43,8 +49,11 @@ public class EmployeeDao {
                 address.getId()
         );
 
+        if (employeeForm.getId() > 0) {
+            person.setId(emp.getPersonId());
+        }
+
         person = PersonDao.save(person);
-        System.out.println(person);
 
         Employee employee = new Employee(
                 employeeForm.getSalary(),
@@ -54,8 +63,12 @@ public class EmployeeDao {
                 person.getId()
         );
 
-        EmployeeDao.save(employee);
-        System.out.println(employee);
+        if (employeeForm.getId() > 0) {
+            employee.setId(employeeForm.getId());
+            employee.setStartDate(emp.getStartDate());
+        }
+
+        employee = EmployeeDao.save(employee);
     }
 
     public static Employee save(Employee employee) {
@@ -72,7 +85,7 @@ public class EmployeeDao {
                 stmt.setInt(3, employee.getPostId());
                 stmt.setInt(4, employee.getHotelId());
                 stmt.setInt(5, employee.getPersonId());
-                stmt.setInt(6, employee.getHotelId());
+                stmt.setInt(6, employee.getId());
 
                 stmt.execute();
 
@@ -207,6 +220,31 @@ public class EmployeeDao {
         }
 
         return employee;
+    }
+
+    public static void delete(int id) {
+        PreparedStatement stmt = null;
+        Connection con = getConnection();
+        try {
+            stmt = con.prepareStatement("DELETE FROM Employee WHERE id =  ?");
+            stmt.setInt(1, id);
+
+            stmt.execute();
+
+            logger.trace("OK: Employee was deleted");
+
+            stmt.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            logger.error("FAILURE: Employee was not deleted!");
+        } finally {
+            try {
+                stmt.close();
+                con.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     public static List<Employee> getAll() {

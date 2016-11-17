@@ -6,15 +6,19 @@
 
 
 <security:http auto-config="true">
+    <security:intercept-url pattern="/" access="isAuthenticated()"/>
     <security:intercept-url pattern="/sign_in" access="isAnonymous()"/>
     <security:intercept-url pattern="/sign_up" access="isAnonymous()"/>
-    <security:intercept-url pattern="/booking[s]!/**" access="hasAnyRole('RECEPTION', 'ADMINISTRATOR', 'SUPERUSER')"/>
-    <security:intercept-url pattern="/employee[s]!/**" access="hasAnyRole('ADMINISTRATOR', 'SUPERUSER')"/>
-    <security:intercept-url pattern="/systemUsers/**" access="hasRole('SUPERUSER')"/>
+    <security:intercept-url pattern="/systemUsers" access="isAuthenticated()"/>
+    <!--<security:intercept-url pattern="/systemUsers/add" access="hasRole('SUPERUSER')"/>-->
     <security:intercept-url pattern="/user/**" access="isAuthenticated()"/>
     <security:intercept-url pattern="/dashboard/**" access="isAuthenticated()"/>
     <security:intercept-url pattern="/report/**" access="isAuthenticated()"/>
     <security:intercept-url pattern="/admin/**" access="hasAnyRole('RECEPTION', 'ADMINISTRATOR', 'SUPERUSER')"/>
+    <security:intercept-url pattern="/hotels/**" access="isAuthenticated()"/>
+    <security:intercept-url pattern="/employees/**" access="isAuthenticated()"/>
+    <security:intercept-url pattern="/roomtypes/**" access="isAuthenticated()"/>
+    <security:intercept-url pattern="/bookings/**" access="isAuthenticated()"/>
     <security:intercept-url pattern="/client/**" access="isAuthenticated()"/>
     <security:form-login
             login-page="/sign_in"

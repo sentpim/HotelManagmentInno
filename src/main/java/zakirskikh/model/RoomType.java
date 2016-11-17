@@ -15,16 +15,15 @@ public class RoomType {
 
     private int bedsCount;
 
-    private int hotelId;
+//    private int hotelId;
 
     public RoomType() {
     }
 
-    public RoomType(String name, int price, int bedsCount, int hotelId) {
+    public RoomType(String name, int price, int bedsCount) {
         this.name = name;
         this.price = price;
         this.bedsCount = bedsCount;
-        this.hotelId = hotelId;
     }
 
     public int getId() {
@@ -57,17 +56,5 @@ public class RoomType {
 
     public void setBedsCount(int bedsCount) {
         this.bedsCount = bedsCount;
-    }
-
-    public int getHotelId() {
-        return hotelId;
-    }
-
-    public void setHotelId(int hotelId) {
-        this.hotelId = hotelId;
-    }
-
-    public Hotel getHotel() {
-        return HotelDao.get(hotelId);
     }
 }

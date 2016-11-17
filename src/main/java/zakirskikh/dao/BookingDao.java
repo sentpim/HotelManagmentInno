@@ -27,11 +27,15 @@ public class BookingDao {
                 bookingForm.getCheckIn(),
                 Date.valueOf(bookingForm.getCheckIn().toLocalDate().plusDays(bookingForm.getDays())),
                 bookingForm.getDays(),
-                false,
+                bookingForm.getIsPayed(),
                 bookingForm.getPersonCount(),
                 bookingForm.getPersonId(),
-                bookingForm.getHotelId()
+                bookingForm.getHotelId(),
+                bookingForm.getRoomTypeId()
         );
+
+        if (bookingForm.getId() != 0)
+            booking.setId(bookingForm.getId());
 
         save(booking);
 
@@ -44,7 +48,7 @@ public class BookingDao {
             PreparedStatement stmt = null;
             Connection con = getConnection();
             try {
-                stmt = con.prepareStatement("UPDATE Booking SET created_at=?, check_in=?, check_out=?, days=?, is_payed=?, person_count=?, person_id=?" +
+                stmt = con.prepareStatement("UPDATE Booking SET created_at=?, check_in=?, check_out=?, days=?, is_payed=?, person_count=?, person_id=?, hotel_id=?, room_type_id=?" +
                         "WHERE id=?");
                 stmt.setDate(1, booking.getCreatedAt());
                 stmt.setDate(2, booking.getCheckIn());
@@ -53,7 +57,9 @@ public class BookingDao {
                 stmt.setBoolean(5, booking.isPayed());
                 stmt.setInt(6, booking.getPersonCount());
                 stmt.setInt(7, booking.getPersonId());
-                stmt.setInt(8, booking.getId());
+                stmt.setInt(8, booking.getHotelId());
+                stmt.setInt(9, booking.getRoomTypeId());
+                stmt.setInt(10, booking.getId());
 
                 stmt.execute();
 
@@ -80,8 +86,8 @@ public class BookingDao {
             Connection con = getConnection();
             try {
                 stmt = con.prepareStatement("INSERT INTO Booking "
-                        + "(created_at, check_in, check_out, days, is_payed, person_count, person_id)"
-                        + "VALUES(?,?,?,?,?,?,?) RETURNING id");
+                        + "(created_at, check_in, check_out, days, is_payed, person_count, person_id, hotel_id, room_type_id)"
+                        + "VALUES(?,?,?,?,?,?,?,?,?) RETURNING id");
                 stmt.setDate(1, booking.getCreatedAt());
                 stmt.setDate(2, booking.getCheckIn());
                 stmt.setDate(3, booking.getCheckOut());
@@ -89,6 +95,8 @@ public class BookingDao {
                 stmt.setBoolean(5, booking.isPayed());
                 stmt.setInt(6, booking.getPersonCount());
                 stmt.setInt(7, booking.getPersonId());
+                stmt.setInt(8, booking.getHotelId());
+                stmt.setInt(9, booking.getRoomTypeId());
 
                 ResultSet rs = stmt.executeQuery();
 
@@ -141,6 +149,8 @@ public class BookingDao {
             booking.setPayed(rs.getBoolean("is_payed"));
             booking.setPersonCount(rs.getInt("person_count"));
             booking.setPersonId(rs.getInt("person_id"));
+            booking.setHotelId(rs.getInt("hotel_id"));
+            booking.setRoomTypeId(rs.getInt("room_type_id"));
 
             logger.trace("OK: Booking was taken with id " + id);
         } catch (SQLException e) {
@@ -156,6 +166,31 @@ public class BookingDao {
         }
 
         return booking;
+    }
+
+    public static void delete(int bookingId) {
+        PreparedStatement stmt = null;
+        Connection con = getConnection();
+        try {
+            stmt = con.prepareStatement("DELETE FROM Booking WHERE id =  ?");
+            stmt.setInt(1, bookingId);
+
+            stmt.execute();
+
+            logger.trace("OK: Booking was deleted");
+
+            stmt.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            logger.error("FAILURE: Booking was not deleted!");
+        } finally {
+            try {
+                stmt.close();
+                con.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     public static void delete(Booking booking) {
@@ -203,6 +238,8 @@ public class BookingDao {
                 booking.setPayed(rs.getBoolean("is_payed"));
                 booking.setPersonCount(rs.getInt("person_count"));
                 booking.setPersonId(rs.getInt("person_id"));
+                booking.setHotelId(rs.getInt("hotel_id"));
+                booking.setRoomTypeId(rs.getInt("room_type_id"));
 
                 list.add(booking);
             }
@@ -240,6 +277,47 @@ public class BookingDao {
                 booking.setPayed(rs.getBoolean("is_payed"));
                 booking.setPersonCount(rs.getInt("person_count"));
                 booking.setPersonId(rs.getInt("person_id"));
+                booking.setHotelId(rs.getInt("hotel_id"));
+                booking.setRoomTypeId(rs.getInt("room_type_id"));
+
+                list.add(booking);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                stm.close();
+                con.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return list;
+    }
+
+    public static List<Booking> getAllByPersonId(int personId) {
+        String sql = "SELECT * FROM Booking WHERE person_id=?";
+        List<Booking> list = new ArrayList<>();
+        PreparedStatement stm = null;
+        Connection con = getConnection();
+        try {
+            stm = con.prepareStatement(sql);
+            stm.setInt(1, personId);
+            ResultSet rs = stm.executeQuery();
+            Booking booking;
+            while (rs.next()) {
+
+                booking = new Booking();
+                booking.setId(rs.getInt("id"));
+                booking.setCreatedAt(rs.getDate("created_at"));
+                booking.setCheckIn(rs.getDate("check_in"));
+                booking.setCheckOut(rs.getDate("check_out"));
+                booking.setDays(rs.getInt("days"));
+                booking.setPayed(rs.getBoolean("is_payed"));
+                booking.setPersonCount(rs.getInt("person_count"));
+                booking.setPersonId(rs.getInt("person_id"));
+                booking.setHotelId(rs.getInt("hotel_id"));
+                booking.setRoomTypeId(rs.getInt("room_type_id"));
 
                 list.add(booking);
             }

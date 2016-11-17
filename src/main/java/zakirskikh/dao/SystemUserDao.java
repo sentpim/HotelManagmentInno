@@ -10,6 +10,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import static zakirskikh.connection.ConnectionManager.getConnection;
 
@@ -170,5 +172,38 @@ public class SystemUserDao {
                 e.printStackTrace();
             }
         }
+    }
+
+    public static List<SystemUser> getAll() {
+        String sql = "SELECT * FROM SystemUser";
+        List<SystemUser> list = new ArrayList<SystemUser>();
+        PreparedStatement stm = null;
+        Connection con = getConnection();
+        try {
+            stm = con.prepareStatement(sql);
+            ResultSet rs = stm.executeQuery();
+            SystemUser systemUser;
+            while (rs.next()) {
+                systemUser = new SystemUser();
+
+                systemUser.setId(rs.getInt("id"));
+                systemUser.setEmail(rs.getString("email"));
+                systemUser.setPassword(rs.getString("password"));
+                systemUser.setRole(SystemUserRole.getSystemUserRole(rs.getInt("role")));
+                systemUser.setPersonId(rs.getInt("person_id"));
+
+                list.add(systemUser);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                stm.close();
+                con.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return list;
     }
 }

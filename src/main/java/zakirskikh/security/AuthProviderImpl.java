@@ -20,12 +20,6 @@ public class AuthProviderImpl implements AuthenticationProvider {
 
     BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
-    /**
-     * Авторизуем пользователя
-     * @param authentication
-     * @return
-     * @throws AuthenticationException
-     */
     @Override
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
         String email = authentication.getName();
@@ -39,7 +33,7 @@ public class AuthProviderImpl implements AuthenticationProvider {
             throw new BadCredentialsException("Invalid password");
         }
         List<GrantedAuthority> authorities = new ArrayList<>();
-        authorities.add(new SimpleGrantedAuthority(systemUser.getRole().toString()));
+        authorities.add(new SimpleGrantedAuthority(systemUser.getRole().getRoleString()));
 
         return new UsernamePasswordAuthenticationToken(systemUser, null, authorities);
     }

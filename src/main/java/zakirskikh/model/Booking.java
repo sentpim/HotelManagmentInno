@@ -33,10 +33,12 @@ public class Booking {
 
     private Person person;
 
+    private int roomTypeId;
+
     public Booking() {
     }
 
-    public Booking(Date createdAt, Date checkIn, Date checkOut, int days, boolean isPayed, int personCount, int personId, int hotelId) {
+    public Booking(Date createdAt, Date checkIn, Date checkOut, int days, boolean isPayed, int personCount, int personId, int hotelId, int roomTypeId) {
         this.createdAt = createdAt;
         this.checkIn = checkIn;
         this.checkOut = checkOut;
@@ -45,6 +47,7 @@ public class Booking {
         this.personCount = personCount;
         this.personId = personId;
         this.hotelId = hotelId;
+        this.roomTypeId = roomTypeId;
     }
 
     public int getId() {
@@ -95,6 +98,10 @@ public class Booking {
         isPayed = payed;
     }
 
+    public String getIsPayed() {
+        return (isPayed()) ? "+" : "";
+    }
+
     public int getPersonCount() {
         return personCount;
     }
@@ -125,5 +132,30 @@ public class Booking {
 
     public Hotel getHotel() {
         return (hotel == null) ? hotel = HotelDao.get(hotelId) : hotel;
+    }
+
+    public int getRoomTypeId() {
+        return roomTypeId;
+    }
+
+    public void setRoomTypeId(int roomTypeId) {
+        this.roomTypeId = roomTypeId;
+    }
+
+    @Override
+    public String toString() {
+        return "Booking{" +
+                "id=" + id +
+                ", createdAt=" + createdAt +
+                ", checkIn=" + checkIn +
+                ", checkOut=" + checkOut +
+                ", days=" + days +
+                ", isPayed=" + isPayed +
+                ", personCount=" + personCount +
+                ", personId=" + personId +
+                ", hotelId=" + hotelId +
+                ", hotel=" + hotel +
+                ", person=" + person +
+                '}';
     }
 }

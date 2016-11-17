@@ -14,12 +14,15 @@ public class Room {
 
     private int roomTypeId;
 
+    private int hotelId;
+
     public Room() {
     }
 
-    public Room(String number, int roomTypeId) {
+    public Room(String number, int roomTypeId, int hotelId) {
         this.number = number;
         this.roomTypeId = roomTypeId;
+        this.hotelId = hotelId;
     }
 
     public int getId() {
@@ -51,7 +54,15 @@ public class Room {
     }
 
     public Hotel getHotel() {
-        return getRoomType().getHotel();
+        return HotelDao.get(hotelId);
+    }
+
+    public int getHotelId() {
+        return hotelId;
+    }
+
+    public void setHotelId(int hotelId) {
+        this.hotelId = hotelId;
     }
 
     @Override

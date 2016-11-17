@@ -24,6 +24,10 @@ public enum SystemUserRole {
         return !this.equals(USER);
     }
 
+    public boolean isLinkedToHotel() {
+        return this.equals(RECEPTION) || this.equals(ADMINISTRATOR);
+    }
+
     public static SystemUserRole getSystemUserRole(int roleId) {
         switch (roleId) {
             case 0:
@@ -31,8 +35,22 @@ public enum SystemUserRole {
             case 1:
                 return ADMINISTRATOR;
             case 2:
-            default:
                 return RECEPTION;
+            default:
+                return USER;
+        }
+    }
+
+    public String getRoleString() {
+        switch (roleId) {
+            case 0:
+                return "SUPERUSER";
+            case 1:
+                return "ADMINISTRATOR";
+            case 2:
+                return "RECEPTION";
+            default:
+                return "USER";
         }
     }
 

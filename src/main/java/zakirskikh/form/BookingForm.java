@@ -21,7 +21,22 @@ public class BookingForm {
 
     private int personId;
 
+    private boolean isPayed;
+
+    private int roomTypeId;
+
     public BookingForm() {
+    }
+
+    public BookingForm(int id, int hotelId, int days, int personCount, Date checkIn, int personId, boolean isPayed, int roomTypeId) {
+        this.id = id;
+        this.hotelId = hotelId;
+        this.days = days;
+        this.personCount = personCount;
+        this.checkIn = checkIn;
+        this.personId = personId;
+        this.isPayed = isPayed;
+        this.roomTypeId = roomTypeId;
     }
 
     public int getId() {
@@ -78,5 +93,36 @@ public class BookingForm {
 
     public void setPersonId(int personId) {
         this.personId = personId;
+    }
+
+    public boolean getIsPayed() {
+        return isPayed;
+    }
+
+    public void setIsPayed(boolean isPayed) {
+        this.isPayed = isPayed;
+    }
+
+    public int getRoomTypeId() {
+        return roomTypeId;
+    }
+
+    public void setRoomTypeId(int roomTypeId) {
+        this.roomTypeId = roomTypeId;
+    }
+
+    @Override
+    public String toString() {
+        return "BookingForm{" +
+                "id=" + id +
+                ", hotelId=" + hotelId +
+                ", days=" + days +
+                ", personCount=" + personCount +
+                ", checkIn=" + checkIn +
+                ", checkOut=" + checkOut +
+                ", personId=" + personId +
+                ", isPayed=" + isPayed +
+                ", roomTypeId=" + roomTypeId +
+                '}';
     }
 }

@@ -13,7 +13,7 @@ public class RoomTypeForm {
 
     private int bedsCount;
 
-    private int hotelId;
+//    private int hotelId;
 
     public RoomTypeForm() {
     }
@@ -48,13 +48,5 @@ public class RoomTypeForm {
 
     public void setBedsCount(int bedsCount) {
         this.bedsCount = bedsCount;
-    }
-
-    public int getHotelId() {
-        return hotelId;
-    }
-
-    public void setHotelId(int hotelId) {
-        this.hotelId = hotelId;
     }
 }

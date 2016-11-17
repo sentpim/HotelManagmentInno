@@ -7,7 +7,6 @@
                 <div class="card">
                     <div class="header">
                         <h4 class="title">Employees</h4>
-                        <p class="category">for hotel 1</p>
                     </div>
                     <div class="content table-responsive table-full-width">
                         <div class="text-center">
@@ -20,6 +19,7 @@
                             <th>Post</th>
                             <th>Salary</th>
                             <th>Start date</th>
+                            <th>Action</th>
                             </thead>
                             <tbody>
                                 <#list employees as employee>
@@ -29,6 +29,11 @@
                                     <td>${employee.getPost().name}</td>
                                     <td>${employee.salary}$</td>
                                     <td>${employee.startDate}</td>
+                                    <td>
+                                        <a href="/employees/${employee.id}/edit">Edit </a>
+                                        |
+                                        <a href="/employees/${employee.id}/delete"> Delete </a>
+                                    </td>
                                 </tr>
                                 </#list>
                             </tbody>

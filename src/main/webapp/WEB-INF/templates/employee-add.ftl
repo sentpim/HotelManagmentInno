@@ -8,7 +8,8 @@
             <div class="col-md-12">
                 <div class="content">
                     <div class="content">
-                        <@form.form action="/employees/add" id="form_employee_add" method="post" modelAttribute="employeeForm">
+                        <@form.form action="/employees/add" id="form_employee_add" method="post" modelAttribute="employeeForm" >
+                            <@form.input path="id" type="hidden" class="form-control border-input hidden" placeholder="Id" />
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
@@ -46,7 +47,7 @@
                                         <label>Post</label>
                                         <@form.select path="postId" type="submit" class="form-control border-input" placeholder="Select post" value="">
                                             <#list posts as post>
-                                                <option value="${post.id}">${post.name}</option>
+                                                <option value="${post.id}" <#if employeeForm.getPostId() == post.id>selected</#if>>${post.name}</option>
                                             </#list>
                                         </@form.select>
                                     </div>
@@ -56,7 +57,7 @@
                                         <label>Hotel</label>
                                         <@form.select path="hotelId" type="submit" class="form-control border-input" placeholder="Select hotel" value="">
                                             <#list hotels as hotel>
-                                                <option value="${hotel.id}">${hotel.name}</option>
+                                                <option value="${hotel.id}" <#if employeeForm.getHotelId() == hotel.id>selected</#if>>${hotel.name}</option>
                                             </#list>
                                         </@form.select>
                                     </div>
@@ -80,8 +81,8 @@
                                     <div class="form-group">
                                         <label>Gender</label>
                                         <@form.select path="genderId" type="submit" class="form-control border-input" placeholder="Select gender" value="">
-                                            <option value="0" selected>Male</option>
-                                            <option value="1">Female</option>
+                                            <option value="0" <#if employeeForm.getGenderId() == 0>selected</#if>>Male</option>
+                                            <option value="1" <#if employeeForm.getGenderId() == 1>selected</#if>>Female</option>
                                         </@form.select>
                                     </div>
                                 </div>
@@ -123,8 +124,13 @@
                                 </div>
                             </div>
 
+
                             <div class="text-center">
-                                <button type="submit" class="btn btn-info btn-fill btn-wd">Add new</button>
+                                <#if is_edit??>
+                                    <button type="submit" class="btn btn-info btn-fill btn-wd">Save</button>
+                                <#else>
+                                    <button type="submit" class="btn btn-info btn-fill btn-wd">Add new</button>
+                                </#if>
                             </div>
                             <div class="clearfix"></div>
                         </@form.form>

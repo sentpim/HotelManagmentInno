@@ -27,11 +27,12 @@ public class RoomDao {
             PreparedStatement stmt = null;
             Connection con = getConnection();
             try {
-                stmt = con.prepareStatement("UPDATE Room SET number=?, room_type_id=?" +
+                stmt = con.prepareStatement("UPDATE Room SET number=?, room_type_id=?, hotel_id=?" +
                         "WHERE id=?");
                 stmt.setString(1, room.getNumber());
                 stmt.setInt(2, room.getRoomTypeId());
-                stmt.setInt(3, room.getId());
+                stmt.setInt(3, room.getHotelId());
+                stmt.setInt(4, room.getId());
 
                 stmt.execute();
 
@@ -58,10 +59,11 @@ public class RoomDao {
             Connection con = getConnection();
             try {
                 stmt = con.prepareStatement("INSERT INTO Room "
-                        + "(number, room_type_id)"
-                        + "VALUES(?,?) RETURNING id");
+                        + "(number, room_type_id, hotel_id)"
+                        + "VALUES(?,?,?) RETURNING id");
                 stmt.setString(1, room.getNumber());
                 stmt.setInt(2, room.getRoomTypeId());
+                stmt.setInt(3, room.getHotelId());
 
                 ResultSet rs = stmt.executeQuery();
 
@@ -133,6 +135,7 @@ public class RoomDao {
                 room.setId(rs.getInt("id"));
                 room.setNumber(rs.getString("number"));
                 room.setRoomTypeId(rs.getInt("room_type_id"));
+                room.setHotelId(rs.getInt("hotel_id"));
 
                 list.add(room);
             }
@@ -150,7 +153,8 @@ public class RoomDao {
     }
 
     public static List<Room> getAll(int hotelId) {
-        String sql = "SELECT r.id as id, number, room_type_id FROM Room r, RoomType rt WHERE rt.id=r.room_type_id and rt.hotel_id=?";
+//        String sql = "SELECT r.id as id, number, room_type_id FROM Room r, RoomType rt WHERE rt.id=r.room_type_id and rt.hotel_id=?";
+        String sql = "SELECT * FROM Room WHERE hotel_id=?";
         List<Room> list = new ArrayList<>();
         PreparedStatement stm = null;
         Connection con = getConnection();
@@ -165,6 +169,7 @@ public class RoomDao {
                 room.setId(rs.getInt("id"));
                 room.setNumber(rs.getString("number"));
                 room.setRoomTypeId(rs.getInt("room_type_id"));
+                room.setHotelId(rs.getInt("hotel_id"));
 
                 list.add(room);
             }
