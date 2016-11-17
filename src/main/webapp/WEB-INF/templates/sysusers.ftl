@@ -44,7 +44,7 @@
 
             <ul class="nav">
                 <li>
-                    <a href="user.ftl">
+                    <a href="user_.ftl">
                         <i class="ti-user"></i>
                         <p>User Profile</p>
                     </a>

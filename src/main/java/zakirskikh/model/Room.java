@@ -1,6 +1,7 @@
 package zakirskikh.model;
 
 import zakirskikh.dao.HotelDao;
+import zakirskikh.dao.RoomTypeDao;
 
 /**
  * Created by Anvar on 15/11/2016.
@@ -12,6 +13,9 @@ public class Room {
     private String number;
 
     private int roomTypeId;
+
+    public Room() {
+    }
 
     public Room(String number, int roomTypeId) {
         this.number = number;
@@ -43,10 +47,19 @@ public class Room {
     }
 
     public RoomType getRoomType() {
-        return null;
+        return RoomTypeDao.get(roomTypeId);
     }
 
     public Hotel getHotel() {
         return getRoomType().getHotel();
+    }
+
+    @Override
+    public String toString() {
+        return "Room{" +
+                "id=" + id +
+                ", number='" + number + '\'' +
+                ", roomTypeId=" + roomTypeId +
+                '}';
     }
 }

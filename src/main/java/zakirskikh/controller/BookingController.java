@@ -1,11 +1,16 @@
 package zakirskikh.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import zakirskikh.dao.BookingDao;
+import zakirskikh.form.BookingForm;
 import zakirskikh.model.Booking;
+
+import java.util.List;
 
 /**
  * Created by Anvar on 16/11/2016.
@@ -14,7 +19,12 @@ import zakirskikh.model.Booking;
 public class BookingController {
 
     @RequestMapping(value = "/bookings" , method = RequestMethod.GET)
-    public String getBookings(){
+    public String getBookings(Model model){
+
+        List<Booking> bookingList = BookingDao.getAll();
+
+        model.addAttribute("bookings", bookingList);
+
         return "bookings";
     }
 
@@ -24,7 +34,10 @@ public class BookingController {
     }
 
     @RequestMapping(value = "/bookings/add" , method = RequestMethod.POST)
-    public String addBooking(){
+    public String addBooking(@ModelAttribute("bookingForm") BookingForm bookingForm){
+
+
+
         return "redirect:/bookings";
     }
 

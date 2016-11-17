@@ -1,13 +1,16 @@
 package zakirskikh.dao;
 
 import org.apache.log4j.Logger;
-import zakirskikh.model.Hotel;
+import zakirskikh.form.HotelForm;
+import zakirskikh.model.Address;
 import zakirskikh.model.Hotel;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import static zakirskikh.connection.ConnectionManager.getConnection;
 
@@ -17,6 +20,26 @@ import static zakirskikh.connection.ConnectionManager.getConnection;
 public class HotelDao {
 
     final static Logger logger = Logger.getLogger(HotelDao.class);
+
+    public static void save(HotelForm hotelForm) {
+
+        Address address = new Address(
+                hotelForm.getCountry(),
+                hotelForm.getCity(),
+                hotelForm.getAddress(),
+                hotelForm.getPostcode()
+        );
+
+        address = AddressDao.save(address);
+
+        HotelDao.save(new Hotel(
+                hotelForm.getName(),
+                hotelForm.getBudget(),
+                hotelForm.getStarsCount(),
+                address.getId()
+        ));
+
+    }
 
     public static Hotel save(Hotel hotel) {
         if (hotel.getId() > 0) {
@@ -153,6 +176,39 @@ public class HotelDao {
                 e.printStackTrace();
             }
         }
+    }
+
+    public static List<Hotel> getAll() {
+        String sql = "SELECT * FROM Hotel";
+        List<Hotel> list = new ArrayList<>();
+        PreparedStatement stm = null;
+        Connection con = getConnection();
+        try {
+            stm = con.prepareStatement(sql);
+            ResultSet rs = stm.executeQuery();
+            Hotel hotel;
+            while (rs.next()) {
+                hotel = new Hotel();
+
+                hotel.setId(rs.getInt("id"));
+                hotel.setName(rs.getString("name"));
+                hotel.setAddressId(rs.getInt("address_id"));
+                hotel.setStarsCount(rs.getInt("stars_count"));
+                hotel.setBudget(rs.getInt("budget"));
+
+                list.add(hotel);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                stm.close();
+                con.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return list;
     }
 
 }

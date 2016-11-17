@@ -7,6 +7,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import zakirskikh.dao.EmployeeDao;
+import zakirskikh.dao.HotelDao;
+import zakirskikh.dao.PersonDao;
+import zakirskikh.dao.SystemUserDao;
 import zakirskikh.form.SystemUserForm;
 import zakirskikh.model.SystemUser;
 
@@ -27,50 +31,60 @@ public class AuthController {
     public String signInPage(Model model){
         SystemUserForm systemUserForm = new SystemUserForm();
         model.addAttribute("systemUserForm", systemUserForm);
+        model.addAttribute("persons", PersonDao.getAll());
 
-        return "/sign_up";
+        return "sign_up";
     }
 
     @RequestMapping(value = "/sign_up", method = RequestMethod.POST)
-//    public String SignUpProcess(@ModelAttribute("userForm") UserForm userForm, BindingResult result){
-    public String SignUpProcess(BindingResult result){
+    public String SignUpProcess(@ModelAttribute("systemUserForm") SystemUserForm systemUserForm, BindingResult result) {
 
-        boolean registered = false;
-
-        if (!result.hasErrors()){
-            try {
-//                userService.registerUser(userForm);
-//            }catch (EmailExistsException emailExistsException){
-//                result.rejectValue("email", "", "Email already exists!");
-            }catch (IllegalArgumentException illegalArgumentException){
-                System.err.println(illegalArgumentException.getMessage());
-                String fieldName;
-                switch (illegalArgumentException.getMessage()){
-                    case "email":
-                        fieldName = "Email";
-                        break;
-                    case "password":
-                        fieldName = "Password";
-                        break;
-                    case "firstName":
-                        fieldName = "First Name";
-                        break;
-                    case "lastName":
-                        fieldName = "Last Name";
-                        break;
-                    default:
-                        fieldName = "Undefined";
-                }
-                result.rejectValue(illegalArgumentException.getMessage(), "", fieldName + " field can't be blank!");
-            }
+        if (SystemUserDao.save(systemUserForm) == null) {
+            return "redirect:/sign_up";
         }
 
-        if (result.hasErrors()){
-            return "sign_up";
-        }else {
-            return "redirect:/sign_in";
-        }
-
+        return "redirect:/sign_in";
     }
+//    @RequestMapping(value = "/sign_up", method = RequestMethod.POST)
+//    public String SignUpProcess(@ModelAttribute("userForm") UserForm userForm, BindingResult result){
+//    public String SignUpProcess(BindingResult result){
+//
+//        boolean registered = false;
+//
+//        if (!result.hasErrors()){
+//            try {
+////                userService.registerUser(userForm);
+////            }catch (EmailExistsException emailExistsException){
+////                result.rejectValue("email", "", "Email already exists!");
+//            }catch (IllegalArgumentException illegalArgumentException){
+//                System.err.println(illegalArgumentException.getMessage());
+//                String fieldName;
+//                switch (illegalArgumentException.getMessage()){
+//                    case "email":
+//                        fieldName = "Email";
+//                        break;
+//                    case "password":
+//                        fieldName = "Password";
+//                        break;
+//                    case "firstName":
+//                        fieldName = "First Name";
+//                        break;
+//                    case "lastName":
+//                        fieldName = "Last Name";
+//                        break;
+//                    default:
+//                        fieldName = "Undefined";
+//                }
+//                result.rejectValue(illegalArgumentException.getMessage(), "", fieldName + " field can't be blank!");
+//            }
+//        }
+//
+//        if (result.hasErrors()){
+//            return "sign_up";
+//        }else {
+//            return "redirect:/sign_in";
+//        }
+//
+//    }
 
 }

@@ -1,7 +1,5 @@
 package zakirskikh.form;
 
-import zakirskikh.model.Hotel;
-import zakirskikh.model.SystemUserRole;
 
 /**
  * Created by Anvar on 16/11/2016.
@@ -14,19 +12,18 @@ public class SystemUserForm {
 
     private String password;
 
-    private int role = 2;
+    private int roleId = 2;
 
-    private String firstName;
-
-    private String lastName;
+    private int personId;
 
     public SystemUserForm() {
     }
 
-    public SystemUserForm(String email, String password, int role) {
+    public SystemUserForm(String email, String password, int roleId, int personId) {
         this.email = email;
         this.password = password;
-        this.role = role;
+        this.roleId = roleId;
+        this.personId = personId;
     }
 
     public int getId() {
@@ -53,28 +50,30 @@ public class SystemUserForm {
         this.password = password;
     }
 
-    public int getRole() {
-        return role;
+    public int getRoleId() {
+        return roleId;
     }
 
-    public void setRole(int role) {
-        this.role = role;
+    public void setRoleId(int roleId) {
+        this.roleId = roleId;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public int getPersonId() {
+        return personId;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void setPersonId(int personId) {
+        this.personId = personId;
     }
 
-    public String getLastName() {
-        return lastName;
+    @Override
+    public String toString() {
+        return "SystemUserForm{" +
+                "id=" + id +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", roleId=" + roleId +
+                ", personId=" + personId +
+                '}';
     }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
 }

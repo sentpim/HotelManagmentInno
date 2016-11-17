@@ -1,8 +1,12 @@
 package zakirskikh.dao;
 
 import org.apache.log4j.Logger;
+import zakirskikh.controller.AuthController;
+import zakirskikh.form.PersonProfileForm;
+import zakirskikh.model.Address;
 import zakirskikh.model.Gender;
 import zakirskikh.model.Person;
+import zakirskikh.model.SystemUser;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -18,6 +22,23 @@ import static zakirskikh.connection.ConnectionManager.getConnection;
 public class PersonDao {
 
     final static Logger logger = Logger.getLogger(PersonDao.class);
+
+    public static void save(PersonProfileForm personProfileForm) {
+        Address address = AddressDao.get(SystemUser.getCurrent().getPerson().getAddressId());
+        address.setCountry(personProfileForm.getCountry());
+        address.setCity(personProfileForm.getCity());
+        address.setPostcode(personProfileForm.getPostcode());
+        address.setAddress(personProfileForm.getAddress());
+        AddressDao.save(address);
+
+        Person person = SystemUser.getCurrent().getPerson();
+        person.setFirstName(personProfileForm.getFirstName());
+        person.setLastName(personProfileForm.getLastName());
+        person.setGender(Gender.getGender(personProfileForm.getGenderId()));
+        person.setPassportId(personProfileForm.getPassportId());
+        person.setEmail(personProfileForm.getEmail());
+        PersonDao.save(person);
+    }
 
     public static Person save(Person person) {
         if (person.getId() > 0) {
@@ -74,7 +95,7 @@ public class PersonDao {
 
                 ResultSet rs = stmt.executeQuery();
 
-                logger.error("OK: Added new Person with email " + person.getEmail());
+                logger.trace("OK: Added new Person with email " + person.getEmail());
 
                 try {
                     rs.next();

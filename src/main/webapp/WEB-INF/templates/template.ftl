@@ -34,43 +34,43 @@
 
             <ul class="nav">
                 <li>
-                    <a href="user.ftl">
+                    <a href="/user">
                         <i class="ti-user"></i>
                         <p>User Profile</p>
                     </a>
                 </li>
                 <li>
-                    <a href="dashboard.ftl">
+                    <a href="/dashboard">
                         <i class="ti-panel"></i>
                         <p>Dashboard</p>
                     </a>
                 </li>
                 <li>
-                    <a href="employees.ftl">
+                    <a href="/employees">
                         <i class="ti-view-list-alt"></i>
                         <p>Employees</p>
                     </a>
                 </li>
                 <li>
-                    <a href="bookings.ftl">
+                    <a href="/bookings">
                         <i class="ti-view-list-alt"></i>
                         <p>Booking</p>
                     </a>
                 </li>
                 <li class="active">
-                    <a href="hotels.ftl">
+                    <a href="/hotels">
                         <i class="ti-map"></i>
                         <p>Hotels</p>
                     </a>
                 </li>
                 <li>
-                    <a href="report.ftl">
+                    <a href="/report">
                         <i class="ti-pencil-alt2"></i>
                         <p>Report an error</p>
                     </a>
                 </li>
                 <li>
-                    <a href="sysusers.ftl">
+                    <a href="/sysusers">
                         <i class="ti-bell"></i>
                         <p>Notifications</p>
                     </a>

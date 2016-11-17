@@ -20,6 +20,10 @@ public enum SystemUserRole {
         return roleId;
     }
 
+    public boolean isAdmin() {
+        return !this.equals(USER);
+    }
+
     public static SystemUserRole getSystemUserRole(int roleId) {
         switch (roleId) {
             case 0:
@@ -31,4 +35,5 @@ public enum SystemUserRole {
                 return RECEPTION;
         }
     }
+
 }

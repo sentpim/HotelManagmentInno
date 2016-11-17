@@ -54,7 +54,7 @@
                     <label for="password_retype" class="col-lg-3 col-md-3 control-label">Re-Password</label>
                     <div class="col-lg-9 col-md-9">
                         <input id="password_retype" type="password" placeholder="Password re-type"  class="form-control" required="required" />
-                        <div id="password_retype_error" class="input-has-error">
+                        <div id="password_retype_error" class="input-has-error hidden">
                             Re-typed Password is wrong!
                         </div>
                     </div>
@@ -63,20 +63,41 @@
                 <hr>
 
                 <div class="form-group">
-                    <label for="firstName" class="col-lg-3 col-md-3 control-label">First Name</label>
+                    <label for="roleId" class="col-lg-3 col-md-3 control-label">Role Number</label>
                     <div class="col-lg-9 col-md-9">
-                        <@form.input path="firstName" type="text" placeholder="First name" class="form-control" required="required" />
-                        <@form.errors path="firstName" element="div" class="input-has-error"/>
+                        <input id="roleId" type="text" placeholder="Role number" name="roleId" class="form-control" required="required" />
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label for="lastName" class="col-lg-3 col-md-3 control-label">Last Name</label>
+                    <label for="personId" class="col-lg-3 col-md-3 control-label">Person</label>
                     <div class="col-lg-9 col-md-9">
-                        <@form.input path="lastName" type="text" placeholder="Last name" class="form-control" required="required" />
-                        <@form.errors path="lastName" element="div" class="input-has-error"/>
+                        <select name="personId" id="personId">
+                            <#if persons?has_content>
+                                <#list persons as person>
+                                    <option value="${person.id}">${person.id}: ${person.firstName} ${person.lastName}</option>
+                                </#list>
+                            </#if>
+                        </select>
+                        <#--<input id="role" type="role" placeholder="Role number"  class="form-control" required="required" />-->
                     </div>
                 </div>
+
+                <#--<div class="form-group">-->
+                    <#--<label for="firstName" class="col-lg-3 col-md-3 control-label">First Name</label>-->
+                    <#--<div class="col-lg-9 col-md-9">-->
+                        <#--<@form.input path="firstName" type="text" placeholder="First name" class="form-control" required="required" />-->
+                        <#--<@form.errors path="firstName" element="div" class="input-has-error"/>-->
+                    <#--</div>-->
+                <#--</div>-->
+
+                <#--<div class="form-group">-->
+                    <#--<label for="lastName" class="col-lg-3 col-md-3 control-label">Last Name</label>-->
+                    <#--<div class="col-lg-9 col-md-9">-->
+                        <#--<@form.input path="lastName" type="text" placeholder="Last name" class="form-control" required="required" />-->
+                        <#--<@form.errors path="lastName" element="div" class="input-has-error"/>-->
+                    <#--</div>-->
+                <#--</div>-->
 
                 <br>
 

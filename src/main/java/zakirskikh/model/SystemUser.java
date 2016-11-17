@@ -1,5 +1,9 @@
 package zakirskikh.model;
 
+import zakirskikh.dao.EmployeeDao;
+import zakirskikh.dao.PersonDao;
+import zakirskikh.security.AuthProviderImpl;
+
 /**
  * Created by Anvar on 15/11/2016.
  */
@@ -13,16 +17,18 @@ public class SystemUser {
 
     private SystemUserRole role;
 
-    private int hotelId;
+    private int personId;
+
+    private Person person;
 
     public SystemUser() {
     }
 
-    public SystemUser(String email, String password, SystemUserRole role, int hotelId) {
+    public SystemUser(String email, String password, SystemUserRole role, int personId) {
         this.email = email;
         this.password = password;
         this.role = role;
-        this.hotelId = hotelId;
+        this.personId = personId;
     }
 
     public int getId() {
@@ -57,15 +63,37 @@ public class SystemUser {
         this.role = role;
     }
 
-    public int getHotelId() {
-        return hotelId;
+    public int getPersonId() {
+        return personId;
     }
 
-    public void setHotelId(int hotelId) {
-        this.hotelId = hotelId;
+    public void setPersonId(int personId) {
+        this.personId = personId;
     }
 
-    public Hotel getHotel() {
-        return null;
+    public Person getPerson() {
+        return (person == null) ? person = PersonDao.get(personId) : person;
+    }
+
+    public Employee getEmployee() {
+        if (!getRole().isAdmin())
+            return null;
+
+        return EmployeeDao.getByPersonId(personId);
+    }
+
+    public static SystemUser getCurrent() {
+        return AuthProviderImpl.getCurrentUser();
+    }
+
+    @Override
+    public String toString() {
+        return "SystemUser{" +
+                "id=" + id +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", role=" + role +
+                ", personId=" + personId +
+                '}';
     }
 }

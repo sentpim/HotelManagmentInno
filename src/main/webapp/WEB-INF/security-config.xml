@@ -6,23 +6,32 @@
 
 
 <security:http auto-config="true">
-        <security:intercept-url pattern="/sign_in" access="isAnonymous()"/>
-        <security:form-login
-                login-page="/sign_in"
-                login-processing-url="/sign_in"
-                password-parameter="password"
-                username-parameter="email"
-                default-target-url="/dashboard"
-                always-use-default-target="true"
-                authentication-failure-url="/sign_in?error=true"
-                authentication-success-handler-ref="authenticationSuccessHandler"/>
-        <security:logout logout-url="/logout" logout-success-url="/sign_in"/>
-        <security:csrf disabled="true"/>
-        <security:headers>
-            <security:frame-options policy="SAMEORIGIN"/>
-            <security:xss-protection enabled="true"/>
-        </security:headers>
-        <security:access-denied-handler error-page="/dashboard" />
+    <security:intercept-url pattern="/sign_in" access="isAnonymous()"/>
+    <security:intercept-url pattern="/sign_up" access="isAnonymous()"/>
+    <security:intercept-url pattern="/booking[s]!/**" access="hasAnyRole('RECEPTION', 'ADMINISTRATOR', 'SUPERUSER')"/>
+    <security:intercept-url pattern="/employee[s]!/**" access="hasAnyRole('ADMINISTRATOR', 'SUPERUSER')"/>
+    <security:intercept-url pattern="/systemUsers/**" access="hasRole('SUPERUSER')"/>
+    <security:intercept-url pattern="/user/**" access="isAuthenticated()"/>
+    <security:intercept-url pattern="/dashboard/**" access="isAuthenticated()"/>
+    <security:intercept-url pattern="/report/**" access="isAuthenticated()"/>
+    <security:intercept-url pattern="/admin/**" access="hasAnyRole('RECEPTION', 'ADMINISTRATOR', 'SUPERUSER')"/>
+    <security:intercept-url pattern="/client/**" access="isAuthenticated()"/>
+    <security:form-login
+            login-page="/sign_in"
+            login-processing-url="/sign_in"
+            password-parameter="password"
+            username-parameter="email"
+            default-target-url="/dashboard"
+            always-use-default-target="true"
+            authentication-failure-url="/sign_in?error=true"
+            authentication-success-handler-ref="authenticationSuccessHandler"/>
+    <security:logout logout-url="/logout" logout-success-url="/sign_in"/>
+    <security:csrf disabled="true"/>
+    <security:headers>
+        <security:frame-options policy="SAMEORIGIN"/>
+        <security:xss-protection enabled="true"/>
+    </security:headers>
+    <security:access-denied-handler error-page="/dashboard" />
     </security:http>
 
     <bean id="authenticationSuccessHandler" class="org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler">

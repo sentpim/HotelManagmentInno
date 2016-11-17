@@ -16,7 +16,7 @@
                                 <div class="col-xs-7">
                                     <div class="numbers">
                                         <p>Capacity</p>
-                                        60%
+                                        ${hotel.getCapacityPersentage()}%
                                     </div>
                                 </div>
                             </div>
@@ -41,7 +41,7 @@
                                 <div class="col-xs-7">
                                     <div class="numbers">
                                         <p>Budget</p>
-                                        Nihuya
+                                        ${hotel.budget}$
                                     </div>
                                 </div>
                             </div>
@@ -66,7 +66,7 @@
                                 <div class="col-xs-7">
                                     <div class="numbers">
                                         <p>Residents</p>
-                                        230
+                                        ${hotel.getResidentsCount()}
                                     </div>
                                 </div>
                             </div>

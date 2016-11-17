@@ -1,11 +1,9 @@
-package zakirskikh.model;
+package zakirskikh.form;
 
 /**
- * Created by Anvar on 15/11/2016.
+ * Created by Anvar on 17/11/2016.
  */
-public class Payment {
-
-    private int id;
+public class PaymentForm {
 
     private String cardNumber;
 
@@ -17,26 +15,7 @@ public class Payment {
 
     private int expireMonth;
 
-    private int bookingId;
-
-    public Payment() {
-    }
-
-    public Payment(String cardNumber, String firstName, String lastName, int expireYear, int expireMonth, int bookingId) {
-        this.cardNumber = cardNumber;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.expireYear = expireYear;
-        this.expireMonth = expireMonth;
-        this.bookingId = bookingId;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
+    public PaymentForm() {
     }
 
     public String getCardNumber() {
@@ -77,13 +56,5 @@ public class Payment {
 
     public void setExpireMonth(int expireMonth) {
         this.expireMonth = expireMonth;
-    }
-
-    public int getBookingId() {
-        return bookingId;
-    }
-
-    public void setBookingId(int bookingId) {
-        this.bookingId = bookingId;
     }
 }

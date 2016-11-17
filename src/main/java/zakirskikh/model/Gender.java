@@ -18,6 +18,10 @@ public enum Gender {
         return genderId;
     }
 
+    public boolean isMale() {
+        return this.equals(MALE);
+    }
+
     public static Gender getGender(int genderId) {
         switch (genderId) {
             case 0:

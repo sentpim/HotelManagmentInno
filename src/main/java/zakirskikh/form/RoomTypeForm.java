@@ -1,11 +1,9 @@
-package zakirskikh.model;
-
-import zakirskikh.dao.HotelDao;
+package zakirskikh.form;
 
 /**
- * Created by Anvar on 15/11/2016.
+ * Created by Anvar on 17/11/2016.
  */
-public class RoomType {
+public class RoomTypeForm {
 
     private int id;
 
@@ -17,14 +15,7 @@ public class RoomType {
 
     private int hotelId;
 
-    public RoomType() {
-    }
-
-    public RoomType(String name, int price, int bedsCount, int hotelId) {
-        this.name = name;
-        this.price = price;
-        this.bedsCount = bedsCount;
-        this.hotelId = hotelId;
+    public RoomTypeForm() {
     }
 
     public int getId() {
@@ -65,9 +56,5 @@ public class RoomType {
 
     public void setHotelId(int hotelId) {
         this.hotelId = hotelId;
-    }
-
-    public Hotel getHotel() {
-        return HotelDao.get(hotelId);
     }
 }

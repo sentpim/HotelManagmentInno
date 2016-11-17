@@ -2,6 +2,7 @@ package zakirskikh.model;
 
 import zakirskikh.dao.CustomerDao;
 import zakirskikh.dao.HotelDao;
+import zakirskikh.dao.PersonDao;
 
 import java.sql.Date;
 
@@ -24,25 +25,25 @@ public class Booking {
 
     private int personCount;
 
-    private int customerId;
+    private int personId;
 
     private int hotelId;
 
     private Hotel hotel;
 
-    private Customer customer;
+    private Person person;
 
     public Booking() {
     }
 
-    public Booking(Date createdAt, Date checkIn, Date checkOut, int days, boolean isPayed, int personCount, int customerId, int hotelId) {
+    public Booking(Date createdAt, Date checkIn, Date checkOut, int days, boolean isPayed, int personCount, int personId, int hotelId) {
         this.createdAt = createdAt;
         this.checkIn = checkIn;
         this.checkOut = checkOut;
         this.days = days;
         this.isPayed = isPayed;
         this.personCount = personCount;
-        this.customerId = customerId;
+        this.personId = personId;
         this.hotelId = hotelId;
     }
 
@@ -102,12 +103,12 @@ public class Booking {
         this.personCount = personCount;
     }
 
-    public int getCustomerId() {
-        return customerId;
+    public int getPersonId() {
+        return personId;
     }
 
-    public void setCustomerId(int customerId) {
-        this.customerId = customerId;
+    public void setPersonId(int personId) {
+        this.personId = personId;
     }
 
     public int getHotelId() {
@@ -118,8 +119,8 @@ public class Booking {
         this.hotelId = hotelId;
     }
 
-    public Customer getCustomer() {
-        return (customer == null) ? customer = CustomerDao.get(customerId) : customer;
+    public Person getPerson() {
+        return (person == null) ? person = PersonDao.get(personId) : person;
     }
 
     public Hotel getHotel() {

@@ -26,7 +26,7 @@
 </head>
 <body>
 
-    <div class="col-lg-6 col-md-8 col-lg-offset-3 col-md-offset-2" style="margin-top: 300px;">
+    <div class="col-lg-6 col-md-8 col-lg-offset-3 col-md-offset-2" style="margin-top: 200px;">
         <div class="well">
             <form action="/sign_in" id="form_sign_up" method="post" class="form-horizontal">
                 <fieldset>
@@ -57,6 +57,11 @@
                     </button>
                     &nbsp
                     <a href="/sign_up">Don't have account</a>
+                    &nbsp
+                    |
+                    &nbsp
+                    <a href="/client/sign_ip">I'am a client</a>
+                    
                 </fieldset>
             </form>
         </div>
