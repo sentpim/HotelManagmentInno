@@ -65,7 +65,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Salary</label>
-                                        <@form.input path="salary" type="text" class="form-control border-input" placeholder="Salary" value="" pattern="[0-9]*[$]" />
+                                        <@form.input path="salary" type="text" class="form-control border-input" placeholder="Salary" value="" />
                                     </div>
                                 </div>
                                 <div class="col-md-6">
