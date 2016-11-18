@@ -4,6 +4,7 @@ import zakirskikh.dao.AddressDao;
 import zakirskikh.dao.BookingDao;
 import zakirskikh.dao.RoomDao;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -92,7 +93,7 @@ public class Hotel {
             capacity += room.getRoomType().getBedsCount();
         }
 
-        return capacity;
+        return capacity * 10;
     }
 
     public int getResidentsCount() {

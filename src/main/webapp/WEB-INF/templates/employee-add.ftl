@@ -47,7 +47,7 @@
                                         <label>Post</label>
                                         <@form.select path="postId" type="submit" class="form-control border-input" placeholder="Select post" value="">
                                             <#list posts as post>
-                                                <option value="${post.id}" <#if employeeForm.getPostId() == post.id>selected</#if>>${post.name}</option>
+                                                <option value="${post.id?c}" <#if employeeForm.getPostId() == post.id>selected</#if>>${post.name}</option>
                                             </#list>
                                         </@form.select>
                                     </div>
@@ -57,7 +57,7 @@
                                         <label>Hotel</label>
                                         <@form.select path="hotelId" type="submit" class="form-control border-input" placeholder="Select hotel" value="">
                                             <#list hotels as hotel>
-                                                <option value="${hotel.id}" <#if employeeForm.getHotelId() == hotel.id>selected</#if>>${hotel.name}</option>
+                                                <option value="${hotel.id?c}" <#if employeeForm.getHotelId() == hotel.id>selected</#if>>${hotel.name}</option>
                                             </#list>
                                         </@form.select>
                                     </div>

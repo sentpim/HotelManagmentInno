@@ -8,7 +8,7 @@
             <div class="col-md-12">
                 <div class="content">
                     <div class="content">
-                        <@form.form action="/hotels/${hotel.id}/rooms/add" id="form_room_add" method="post" modelAttribute="roomForm">
+                        <@form.form action="/hotels/${hotel.id?c}/rooms/add" id="form_room_add" method="post" modelAttribute="roomForm">
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
@@ -21,7 +21,7 @@
                                         <label>Room type</label>
                                         <@form.select path="roomTypeId" type="submit" class="form-control border-input">
                                             <#list roomTypes as roomType>
-                                                <option value="${roomType.id}">${roomType.name}</option>
+                                                <option value="${roomType.id?c}">${roomType.name}</option>
                                             </#list>
                                         </@form.select>
                                     </div>

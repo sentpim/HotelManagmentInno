@@ -117,7 +117,7 @@ public class PersonController {
                                 ThreadLocalRandom.current().nextInt(1, 10),
                                 false,
                                 ThreadLocalRandom.current().nextInt(1, 3),
-                                ThreadLocalRandom.current().nextInt(1, 200),
+                                ThreadLocalRandom.current().nextInt(1, 900),
                                 hotel.getId(),
                                 ThreadLocalRandom.current().nextInt(1, 5)
                         );

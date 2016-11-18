@@ -8,7 +8,7 @@
                     <div class="header">
                         <h4 class="title">Bookings</h4>
                         <div class="text-center">
-                            <a href="/client/bookings/add">
+                            <a href="/bookings/add">
                                 <button type="submit" class="btn btn-info btn-fill btn-wd">Add new</button>
                             </a>
                         </div>
@@ -36,12 +36,12 @@
                                         <td>${booking.getIsPayed()}</td>
                                         <td>${booking.personCount}</td>
                                         <td>
-                                            <a href="/bookings/${booking.id}/edit">Edit </a>
+                                            <a href="/bookings/${booking.id?c}/edit">Edit </a>
                                             |
-                                            <a href="/bookings/${booking.id}/delete"> Delete </a>
+                                            <a href="/bookings/${booking.id?c}/delete"> Delete </a>
                                             <#if booking.isPayed() == false>
                                                 |
-                                                <a href="/bookings/${booking.id}/pay"> Pay</a>
+                                                <a href="/bookings/${booking.id?c}/pay"> Pay</a>
                                             </#if>
                                         </td>
                                     </tr>

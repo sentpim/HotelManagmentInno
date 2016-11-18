@@ -3,8 +3,7 @@ package zakirskikh.dao;
 import org.apache.log4j.Logger;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import zakirskikh.form.SystemUserForm;
-import zakirskikh.model.SystemUser;
-import zakirskikh.model.SystemUserRole;
+import zakirskikh.model.*;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -33,6 +32,31 @@ public class SystemUserDao {
         systemUser.setEmail(systemUserForm.getEmail());
         systemUser.setPersonId(systemUserForm.getPersonId());
         systemUser.setRole(SystemUserRole.getSystemUserRole(systemUserForm.getRoleId()));
+
+        Person person;
+
+        if (systemUserForm.getPersonId() == 0){
+            Address address = AddressDao.save(new Address(
+                    "",
+                    "",
+                    "",
+                    ""
+            ));
+
+            person = PersonDao.save(new Person(
+                    "",
+                    "",
+                    Gender.MALE,
+                    "",
+                    systemUserForm.getEmail(),
+                    "",
+                    address.getId()
+            ));
+
+            systemUser.setPersonId(person.getId());
+        }
+
+
 
         System.out.println(systemUser);
 

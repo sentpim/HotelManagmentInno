@@ -50,38 +50,38 @@
                     </div>
                 </div>
 
-                <div class="form-group">
-                    <label for="password_retype" class="col-lg-3 col-md-3 control-label">Re-Password</label>
-                    <div class="col-lg-9 col-md-9">
-                        <input id="password_retype" type="password" placeholder="Password re-type"  class="form-control" required="required" />
-                        <div id="password_retype_error" class="input-has-error hidden">
-                            Re-typed Password is wrong!
-                        </div>
-                    </div>
-                </div>
+                <#--<div class="form-group">-->
+                    <#--<label for="password_retype" class="col-lg-3 col-md-3 control-label">Re-Password</label>-->
+                    <#--<div class="col-lg-9 col-md-9">-->
+                        <#--<input id="password_retype" type="password" placeholder="Password re-type"  class="form-control" required="required" />-->
+                        <#--<div id="password_retype_error" class="input-has-error hidden">-->
+                            <#--Re-typed Password is wrong!-->
+                        <#--</div>-->
+                    <#--</div>-->
+                <#--</div>-->
 
                 <hr>
 
-                <div class="form-group">
+                <div class="form-group hidden">
                     <label for="roleId" class="col-lg-3 col-md-3 control-label">Role Number</label>
                     <div class="col-lg-9 col-md-9">
-                        <input id="roleId" type="text" placeholder="Role number" name="roleId" class="form-control" required="required" />
+                        <input id="roleId" type="hidden" placeholder="Role number" name="roleId" class="form-control hidden" required="required" value="3" />
                     </div>
                 </div>
 
-                <div class="form-group">
-                    <label for="personId" class="col-lg-3 col-md-3 control-label">Person</label>
-                    <div class="col-lg-9 col-md-9">
-                        <select name="personId" id="personId">
-                            <#if persons?has_content>
-                                <#list persons as person>
-                                    <option value="${person.id}">${person.id}: ${person.firstName} ${person.lastName}</option>
-                                </#list>
-                            </#if>
-                        </select>
-                        <#--<input id="role" type="role" placeholder="Role number"  class="form-control" required="required" />-->
-                    </div>
-                </div>
+                <#--<div class="form-group">-->
+                    <#--<label for="personId" class="col-lg-3 col-md-3 control-label">Person</label>-->
+                    <#--<div class="col-lg-9 col-md-9">-->
+                        <#--<select name="personId" id="personId">-->
+                            <#--<#if persons?has_content>-->
+                                <#--<#list persons as person>-->
+                                    <#--<option value="${person.id}">${person.id}: ${person.firstName} ${person.lastName}</option>-->
+                                <#--</#list>-->
+                            <#--</#if>-->
+                        <#--</select>-->
+                        <#--&lt;#&ndash;<input id="role" type="role" placeholder="Role number"  class="form-control" required="required" />&ndash;&gt;-->
+                    <#--</div>-->
+                <#--</div>-->
 
                 <#--<div class="form-group">-->
                     <#--<label for="firstName" class="col-lg-3 col-md-3 control-label">First Name</label>-->

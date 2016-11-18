@@ -129,7 +129,7 @@
                                     </div>
                                     <hr>
                                     <div class="stats">
-                                        <a href="/report/${report.id}/delete"><i class="ti-close"></i> Delete</a>
+                                        <a href="/report/${report.id?c}/delete"><i class="ti-close"></i> Delete</a>
                                     </div>
                                 </div>
                             </div>

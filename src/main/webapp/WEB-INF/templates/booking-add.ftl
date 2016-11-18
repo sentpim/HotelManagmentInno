@@ -16,7 +16,7 @@
                                         <label for="exampleInputEmail1">Customer</label>
                                         <@form.select path="personId" class="form-control border-input">
                                             <#list persons as person>
-                                                <option value="${person.id}" <#if person.id == bookingForm.getPersonId()>selected</#if>>${person.id}
+                                                <option value="${person.id?c}" <#if person.id == bookingForm.getPersonId()>selected</#if>>${person.id}
                                                     : ${person.firstName} ${person.lastName}</option>
                                             </#list>
                                         </@form.select>
@@ -27,7 +27,7 @@
                                         <label>Hotel</label>
                                         <@form.select path="hotelId" class="form-control border-input">
                                             <#list hotels as hotel>
-                                                <option value="${hotel.id}" <#if hotel.id == bookingForm.getHotelId()>selected</#if>>${hotel.name}</option>
+                                                <option value="${hotel.id?c}" <#if hotel.id == bookingForm.getHotelId()>selected</#if>>${hotel.name}</option>
                                             </#list>
                                         </@form.select>
                                     </div>
@@ -66,7 +66,7 @@
                                         <label>Room type</label>
                                         <@form.select path="roomTypeId" class="form-control border-input">
                                             <#list roomTypes as roomType>
-                                                <option value="${roomType.id}" <#if roomType.id == bookingForm.getRoomTypeId()>selected</#if>>${roomType.name} - ${roomType.price}$</option>
+                                                <option value="${roomType.id?c}" <#if roomType.id == bookingForm.getRoomTypeId()>selected</#if>>${roomType.name} - ${roomType.price}$</option>
                                             </#list>
                                         </@form.select>
                                     </div>

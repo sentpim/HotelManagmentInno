@@ -16,7 +16,7 @@
                                         <label for="exampleInputEmail1">Customer</label>
                                         <@form.select path="personId" class="form-control border-input">
                                             <#list persons as person>
-                                                <option value="${person.id}" <#if person.id == systemUserForm.getPersonId()>selected</#if>>${person.id}
+                                                <option value="${person.id?c}" <#if person.id == systemUserForm.getPersonId()>selected</#if>>${person.id}
                                                     : ${person.firstName} ${person.lastName}</option>
                                             </#list>
                                         </@form.select>

@@ -83,6 +83,7 @@ public class BookingController {
     @RequestMapping(value = "/client/bookings/add" , method = RequestMethod.GET)
     public String getAddClientBooking(Model model){
         model.addAttribute("is_bookings_category", true);
+        model.addAttribute("is_user", true);
 
         model.addAttribute("bookingForm", new BookingForm());
         model.addAttribute("hotels", HotelDao.getAll());
@@ -97,6 +98,8 @@ public class BookingController {
 
     @RequestMapping(value = "/bookings/add" , method = RequestMethod.POST)
     public String addBooking(@ModelAttribute("bookingForm") BookingForm bookingForm){
+
+        System.out.println("test");
 
         BookingDao.save(bookingForm);
 

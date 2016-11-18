@@ -9,7 +9,7 @@
                     <div class="header">
                         <h4 class="title">${hotel.name} - Rooms</h4>
                         <div class="text-center">
-                            <a href="/hotels/${hotel.id}/rooms/add">
+                            <a href="/hotels/${hotel.id?c}/rooms/add">
                                 <button type="submit" class="btn btn-info btn-fill btn-wd">Add new</button>
                             </a>
                         </div>

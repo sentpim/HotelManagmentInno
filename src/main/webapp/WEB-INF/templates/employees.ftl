@@ -30,9 +30,9 @@
                                     <td>${employee.salary}$</td>
                                     <td>${employee.startDate}</td>
                                     <td>
-                                        <a href="/employees/${employee.id}/edit">Edit </a>
+                                        <a href="/employees/${employee.id?c}/edit">Edit </a>
                                         |
-                                        <a href="/employees/${employee.id}/delete"> Delete </a>
+                                        <a href="/employees/${employee.id?c}/delete"> Delete </a>
                                     </td>
                                 </tr>
                                 </#list>

@@ -36,16 +36,16 @@
                                                 <td>${hotel.getAddress().city}</td>
                                                 <td>${hotel.getResidentsCount()}</td>
                                                 <td>
-                                                    <a href="/hotels/${hotel.id}/rooms/add">Room </a>
+                                                    <a href="/hotels/${hotel.id?c}/rooms/add">Room </a>
                                                     <#--|-->
                                                     <#--<a href="/hotels/${hotel.id}/roomtypes/add"> Room type </a>-->
                                                     <#--|-->
                                                     <#--<a href="/hotels/${hotel.id}/features/add"> Feature </a>-->
                                                 </td>
                                                 <td>
-                                                    <a href="/hotels/${hotel.id}/rooms"> Rooms</a>
+                                                    <a href="/hotels/${hotel.id?c}/rooms"> Rooms</a>
                                                     |
-                                                    <a href="/hotels/${hotel.id}/bookings"> Bookings </a>
+                                                    <a href="/hotels/${hotel.id?c}/bookings"> Bookings </a>
                                                 </td>
                                             </tr>
                                         </#list>

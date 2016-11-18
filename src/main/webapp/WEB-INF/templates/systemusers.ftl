@@ -27,7 +27,7 @@
                                     <td>${systemUser.getPerson().firstName} ${systemUser.getPerson().lastName}</td>
                                     <td>${systemUser.role}$</td>
                                     <td>
-                                        <a href="/systemusers/${systemUser.id}/delete"> Delete </a>
+                                        <a href="/systemusers/${systemUser.id?c}/delete"> Delete </a>
                                     </td>
                                 </tr>
                                 </#list>
